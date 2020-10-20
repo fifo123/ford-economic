@@ -1,4 +1,5 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { UsuarioEntity } from "../usuario/usuario.entity";
 
 @Entity({
     name:'GrupoFamiliar'
@@ -12,6 +13,12 @@ export class GrupoFamiliarEntity extends BaseEntity{
         length: 255
     })
     nome: string;
+
+    @OneToMany(
+		type => UsuarioEntity,
+		usuario => usuario.grupoFamiliar,
+	)
+	usuarios: UsuarioEntity[];
 
     @UpdateDateColumn()
     atualizado: Date;
