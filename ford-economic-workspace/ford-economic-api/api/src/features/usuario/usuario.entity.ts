@@ -15,49 +15,63 @@ export class UsuarioEntity extends BaseEntity{
     nome: string;
 
     @Column({
+        type:'varchar',
+        length: 100,
+        unique: true
+    })
+    email: string;
+
+    @Column({
         type:'date',
-        nullable: true
+        nullable: false
     })
     dataNascimento: string;
     
     @Column({
         type:'varchar',
-        nullable: true,
+        nullable: false,
         length: 10
     })
     numero: string;
     
     @Column({
         type:'varchar',
-        nullable: true,
+        nullable: false,
         length: 255
     })
     logradouro: string;
+
+    @Column({
+        type:'varchar',
+        nullable: false,
+        length: 8
+    })
+    cep: string;
     
     @Column({
         type:'varchar',
-        nullable: true,
+        nullable: false,
         length: 255
     })
     bairro: string;
     
     @Column({
         type:'varchar',
-        nullable: true,
+        nullable: false,
         length: 255
     })
     cidade: string;
     
     @Column({
         type:'varchar',
-        nullable: true,
+        nullable: false,
         length: 2
     })
     uf: string;
     
     @Column({
         type:'varchar',
-        nullable: true,
+        nullable: false,
         length: 255
     })
     pais: string;
@@ -78,7 +92,7 @@ export class UsuarioEntity extends BaseEntity{
     
     @Column({
         type:'varchar',
-        nullable: true,
+        nullable: false,
         length: 20
     })
     genero: string;
