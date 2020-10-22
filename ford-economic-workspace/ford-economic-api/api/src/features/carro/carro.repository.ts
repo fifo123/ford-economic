@@ -21,7 +21,7 @@ export class CarroRepository extends Repository<CarroEntity> {
     async listarCarros(): Promise<ListarCarros>{
         try {
             const [carros, total] = await this.findAndCount({
-                relations: ['usuario'],
+                relations: ['usuario', 'localizacao'],
             });
             return {total, carros}
         } catch (error) {
@@ -34,7 +34,7 @@ export class CarroRepository extends Repository<CarroEntity> {
     async listarCarro(id: number): Promise<CarroEntity>{
         try {
             const usuario = await this.findOne(id, {
-                relations: ['usuario'],
+                relations: ['usuario', 'localizacao'],
             })
             if(!usuario)
                 throw new HttpException(

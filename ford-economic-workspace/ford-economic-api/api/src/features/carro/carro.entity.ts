@@ -1,4 +1,5 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { LocalizacaoCarroEntity } from "../localizacao-carro/localizacao-carro.entity";
 import { UsuarioEntity } from "../usuario/usuario.entity";
 
 @Entity({
@@ -46,11 +47,11 @@ export class CarroEntity extends BaseEntity{
     )
     usuario: UsuarioEntity;
 
-    //@OneToMany(
-    //    () => LocalizacaoCarroEntity,
-    //    localizacaoCarro => localizacaoCarro.carro,
-    //)
-    //localizacaoCarro: LocalizacaoCarroEntity;
+    @OneToMany(
+        () => LocalizacaoCarroEntity,
+        localizacao => localizacao.carro,
+    )
+    localizacao: LocalizacaoCarroEntity[];
 
     @UpdateDateColumn()
     atualizado: Date;

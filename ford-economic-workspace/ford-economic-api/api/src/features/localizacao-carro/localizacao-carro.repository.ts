@@ -20,7 +20,7 @@ export class LocalizacaoCarroRepository extends Repository<LocalizacaoCarroEntit
     }
     async listarLocalizacoesCarros(): Promise<ListarLocalizacaoCarros>{
         try {
-            const [localizacaoCarro, total] = await this.findAndCount();
+            const [localizacaoCarro, total] = await this.findAndCount({relations: ['carro']});
             return {total, localizacaoCarro}
         } catch (error) {
             throw new HttpException(
@@ -31,7 +31,7 @@ export class LocalizacaoCarroRepository extends Repository<LocalizacaoCarroEntit
     }
     async listarLocalizacaoCarro(id: number): Promise<LocalizacaoCarroEntity>{
         try {
-            const LocalizacaoCarros = await this.findOne(id)
+            const LocalizacaoCarros = await this.findOne(id, {relations: ['carro']})
             if(!LocalizacaoCarros)
                 throw new HttpException(
                     'Não foi encontrado um Grupo Familiar com esse ID',

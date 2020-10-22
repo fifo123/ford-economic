@@ -1,4 +1,5 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { CarroEntity } from "../carro/carro.entity";
 
 @Entity({
     name:'LocalizacaoCarro'
@@ -18,11 +19,11 @@ export class LocalizacaoCarroEntity extends BaseEntity{
     })
     longitude: number;
 
-    /*@OneToOne(
-		type => CarroEntity,
-		carro => carro.localizacaoCarro,
-	)
-	carro: CarroEntity;*/
+    @ManyToOne(
+        () => CarroEntity,
+        carro => carro.localizacao,
+    )
+    carro: CarroEntity;
 
     @UpdateDateColumn()
     atualizado: Date;
