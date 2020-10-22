@@ -22,6 +22,9 @@ export class CarroSensorRepository extends Repository<CarroSensorEntity> {
         try {
             const [carroSensor, total] = await this.findAndCount({
                 relations: ['sensor', 'carro'],
+                order: {
+                    criado: 'DESC'
+                }
             });
             return {total, carroSensor}
         } catch (error) {
@@ -34,7 +37,10 @@ export class CarroSensorRepository extends Repository<CarroSensorEntity> {
     async listarCarroSensor(id: number): Promise<CarroSensorEntity>{
         try {
             const carroSensor = await this.findOne(id, {
-              //  relations: ['localizacaoCarro'],
+                relations: ['sensor', 'carro'],
+                order: {
+                    criado: 'DESC'
+                }
             })
             if(!carroSensor)
                 throw new HttpException(

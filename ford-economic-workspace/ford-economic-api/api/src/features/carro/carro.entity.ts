@@ -1,4 +1,5 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { CarroSensorEntity } from "../carro-sensor/carro-sensor.entity";
 
 @Entity({
     name:'Carro'
@@ -44,6 +45,12 @@ export class CarroEntity extends BaseEntity{
     //    localizacaoCarro => localizacaoCarro.carro,
     //)
     //localizacaoCarro: LocalizacaoCarroEntity;
+
+    @OneToMany(
+		type => CarroSensorEntity,
+		carroSensor => carroSensor.carro,
+	)
+	carroSensor: CarroSensorEntity[];
 
     @UpdateDateColumn()
     atualizado: Date;

@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, ValidationPipe } from '@nestjs/common';
 import { CarroSensorService } from './carro-sensor.service';
+import { AtualizarCarroSensorDto } from './dto/atualizar-carro-sensor.dto';
+import { CarroSensorDto } from './dto/carro-sensor.dto';
 
 @Controller('carro-sensor')
 export class CarroSensorController {

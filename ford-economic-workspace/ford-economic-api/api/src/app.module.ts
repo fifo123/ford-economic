@@ -6,9 +6,11 @@ import { UsuarioModule } from './features/usuario/usuario.module';
 import { SensorModule } from './features/sensor/sensor.module';
 import { LocalizacaoCarroModule } from './features/localizacao-carro/localizacao-carro.module';
 import { CarroModule } from './features/carro/carro.module';
+import { CarroSensorModule } from './features/carro-sensor/carro-sensor.module';
 
 
 @Module({
-  imports: [GrupoFamiliarModule, SensorModule, UsuarioModule, CarroModule, LocalizacaoCarroModule,TypeOrmModule.forRoot(typeOrmConfig)],
+  imports: [
+    GrupoFamiliarModule, SensorModule, UsuarioModule, CarroModule, LocalizacaoCarroModule, CarroSensorModule,TypeOrmModule.forRoot(typeOrmConfig)],
 })
 export class AppModule {}

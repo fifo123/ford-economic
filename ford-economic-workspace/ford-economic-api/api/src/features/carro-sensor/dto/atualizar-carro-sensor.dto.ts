@@ -1,4 +1,4 @@
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsOptional } from 'class-validator';
 import { CarroEntity } from 'src/features/carro/carro.entity';
 import { SensorEntity } from 'src/features/sensor/sensor.entity';
 

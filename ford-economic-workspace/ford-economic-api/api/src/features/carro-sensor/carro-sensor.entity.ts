@@ -1,4 +1,4 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { CarroEntity } from "../carro/carro.entity";
 import { SensorEntity } from "../sensor/sensor.entity";
 
@@ -9,17 +9,17 @@ export class CarroSensorEntity extends BaseEntity{
     @PrimaryGeneratedColumn('increment')
     id: number;
 
-    @OneToMany(
+    @ManyToOne(
         () => CarroEntity,
-        carro => carro.CarroSensor,
+        carro => carro.carroSensor,
     )
-    carro: CarroEntity[];
+    carro: CarroEntity;
        
-    @OneToMany(
+    @ManyToOne(
         () => SensorEntity,
-        sensor => sensor.CarroSensor,
+        sensor => sensor.carroSensor,
     )
-    sensor: SensorEntity[];
+    sensor: SensorEntity;
 
     @UpdateDateColumn()
     atualizado: Date;
