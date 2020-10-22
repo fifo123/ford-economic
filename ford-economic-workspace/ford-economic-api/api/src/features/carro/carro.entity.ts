@@ -23,6 +23,7 @@ export class CarroEntity extends BaseEntity{
     @Column({
         type:'varchar',
         length: 7,
+        nullable: false
     })
     placa: string;
     
@@ -38,11 +39,11 @@ export class CarroEntity extends BaseEntity{
     })
     quilometragem: number;
 
-    @OneToMany(
-        () => LocalizacaoCarroEntity,
-        localizacaoCarro => localizacaoCarro.carro,
-    )
-    localizacaoCarro: LocalizacaoCarroEntity;
+    //@OneToMany(
+    //    () => LocalizacaoCarroEntity,
+    //    localizacaoCarro => localizacaoCarro.carro,
+    //)
+    //localizacaoCarro: LocalizacaoCarroEntity;
 
     @UpdateDateColumn()
     atualizado: Date;
