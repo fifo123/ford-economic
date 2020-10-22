@@ -1,5 +1,5 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { GrupoFamiliarEntity } from "../grupo-familiar/grupoFamiliar.entity";
+import { GrupoFamiliarEntity } from "../grupo-familiar/grupo-familiar.entity";
 
 @Entity({
     name:'Usuario'

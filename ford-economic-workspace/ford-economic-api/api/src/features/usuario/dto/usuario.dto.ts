@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
-import { GrupoFamiliarEntity } from 'src/features/grupo-familiar/grupoFamiliar.entity';
+import { GrupoFamiliarEntity } from 'src/features/grupo-familiar/grupo-familiar.entity';
 
 export class UsuarioDto {
     @IsString({message:'O campo nome precisa ser uma string.'})

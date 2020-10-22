@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
 import { GrupoFamiliarDto } from "./dto/grupo-familiar.dto";
-import { GrupoFamiliarEntity } from "./grupoFamiliar.entity";
+import { GrupoFamiliarEntity } from "./grupo-familiar.entity";
 import { ListarGruposFamiliares } from "./interface/listar-grupos-familiares.interface";
 
 @EntityRepository(GrupoFamiliarEntity)

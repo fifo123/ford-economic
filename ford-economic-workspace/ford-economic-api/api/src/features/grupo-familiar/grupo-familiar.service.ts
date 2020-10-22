@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { GrupoFamiliarDto } from './dto/grupo-familiar.dto';
-import { GrupoFamiliarRepository } from './grupo-familiart.repository';
-import { GrupoFamiliarEntity } from './grupoFamiliar.entity';
+import { GrupoFamiliarRepository } from './grupo-familiar.repository';
+import { GrupoFamiliarEntity } from './grupo-familiar.entity';
 import { ListarGruposFamiliares } from './interface/listar-grupos-familiares.interface';
 
 @Injectable()
