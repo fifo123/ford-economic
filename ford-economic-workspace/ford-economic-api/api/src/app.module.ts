@@ -4,9 +4,10 @@ import { GrupoFamiliarModule } from './features/grupo-familiar/grupo-familiar.mo
 import { typeOrmConfig } from './config/typeormConfig.config'
 import { UsuarioModule } from './features/usuario/usuario.module';
 import { SensorModule } from './features/sensor/sensor.module';
+import { CarroModule } from './features/carro/carro.module';
 
 
 @Module({
-  imports: [GrupoFamiliarModule, SensorModule, UsuarioModule, TypeOrmModule.forRoot(typeOrmConfig)],
+  imports: [GrupoFamiliarModule, SensorModule, UsuarioModule, CarroModule,TypeOrmModule.forRoot(typeOrmConfig)],
 })
 export class AppModule {}
