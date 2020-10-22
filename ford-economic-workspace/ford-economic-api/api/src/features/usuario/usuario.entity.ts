@@ -1,4 +1,5 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { CarroEntity } from "../carro/carro.entity";
 import { GrupoFamiliarEntity } from "../grupo-familiar/grupo-familiar.entity";
 
 @Entity({
@@ -102,6 +103,12 @@ export class UsuarioEntity extends BaseEntity{
         grupoFamiliar => grupoFamiliar.usuarios,
     )
     grupoFamiliar: GrupoFamiliarEntity;
+
+    @OneToMany(
+        () => CarroEntity,
+        carro => carro.usuario,
+    )
+    carro: CarroEntity[];
 
     @UpdateDateColumn()
     atualizado: Date;

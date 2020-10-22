@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
+import { IsNumber, IsOptional, IsString, Length } from 'class-validator';
+import { UsuarioEntity } from 'src/features/usuario/usuario.entity';
 
 export class AtualizarCarroDto {
     
@@ -25,4 +26,7 @@ export class AtualizarCarroDto {
     @IsNumber({allowInfinity: false, allowNaN: false, maxDecimalPlaces:0}, {message:'O campo quilometragem precisa ser um número.'})
     quilometragem?: number;
    
+    @IsNumber({allowInfinity: false, allowNaN: false, maxDecimalPlaces:0}, {message:'O campo usuario precisa ser um numero.'})
+    @IsOptional()
+    usuario: UsuarioEntity;
 }

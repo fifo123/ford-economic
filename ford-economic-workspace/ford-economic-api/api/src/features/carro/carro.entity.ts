@@ -1,4 +1,5 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { UsuarioEntity } from "../usuario/usuario.entity";
 
 @Entity({
     name:'Carro'
@@ -38,6 +39,12 @@ export class CarroEntity extends BaseEntity{
         type:'numeric',
     })
     quilometragem: number;
+
+    @ManyToOne(
+        () => UsuarioEntity,
+        usuario => usuario.carro,
+    )
+    usuario: UsuarioEntity;
 
     //@OneToMany(
     //    () => LocalizacaoCarroEntity,
