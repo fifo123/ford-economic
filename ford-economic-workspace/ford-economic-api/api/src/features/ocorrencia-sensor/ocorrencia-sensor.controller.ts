@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseFilters, ValidationPipe, ExceptionFilter, Patch, Delete } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post,  ValidationPipe, Patch, Delete } from '@nestjs/common';
 import { OcorrenciaSensorService } from './ocorrencia-sensor.service'
 import { OcorrenciaSensorDto } from './dto/ocorrencia-sensor.dto'
 import { AtualizarOcorrenciaSensorDto } from './dto/atualizar-ocorrencia-sensor.dto'
@@ -29,6 +29,6 @@ export class OcorrenciaSensorController {
 
     @Delete('/deletar/:id')
     async deletarOcorrenciaSensor(@Param('id') id:number){
-        return this.ocorrenciaSensorService.deletarSensor(id)
+        return this.ocorrenciaSensorService.deletarOcorrenciaSensor(id)
     }
 }

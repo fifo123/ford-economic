@@ -21,7 +21,7 @@ export class CarroSensorRepository extends Repository<CarroSensorEntity> {
     async listarCarroSensores(): Promise<ListarCarroSensores>{
         try {
             const [carroSensor, total] = await this.findAndCount({
-                relations: ['sensor', 'carro'],
+                relations: ['sensor', 'carro', 'ocorrenciaSensor'],
                 order: {
                     criado: 'DESC'
                 }
@@ -37,7 +37,7 @@ export class CarroSensorRepository extends Repository<CarroSensorEntity> {
     async listarCarroSensor(id: number): Promise<CarroSensorEntity>{
         try {
             const carroSensor = await this.findOne(id, {
-                relations: ['sensor', 'carro'],
+                relations: ['sensor', 'carro', 'ocorrenciaSensor'],
                 order: {
                     criado: 'DESC'
                 }

@@ -1,5 +1,6 @@
-import { BaseEntity, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { CarroEntity } from "../carro/carro.entity";
+import { OcorrenciaSensorEntity } from "../ocorrencia-sensor/ocorrencia-sensor.entity";
 import { SensorEntity } from "../sensor/sensor.entity";
 
 @Entity({
@@ -20,6 +21,12 @@ export class CarroSensorEntity extends BaseEntity{
         sensor => sensor.carroSensor,
     )
     sensor: SensorEntity;
+
+    @OneToMany(
+		type => OcorrenciaSensorEntity,
+		ocorrencia => ocorrencia.carroSensor,
+	)
+	ocorrenciaSensor: OcorrenciaSensorEntity[];
 
     @UpdateDateColumn()
     atualizado: Date;

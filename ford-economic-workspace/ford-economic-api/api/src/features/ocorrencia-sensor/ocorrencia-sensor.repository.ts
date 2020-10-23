@@ -21,7 +21,7 @@ export class OcorrenciaSensorRepository extends Repository<OcorrenciaSensorEntit
     async listarOcorrenciaSensores(): Promise<ListarOcorrenciaSensores>{
         try {
             const [ocorrenciaSensores, total] = await this.findAndCount({
-                relations: ['grupoFamiliar', 'carro'],
+                relations: ['carroSensor', 'carroSensor.carro', 'carroSensor.sensor'],
             });
             return {total, ocorrenciaSensores}
         } catch (error) {
@@ -34,7 +34,7 @@ export class OcorrenciaSensorRepository extends Repository<OcorrenciaSensorEntit
     async listarOcorrenciaSensor(id: number): Promise<OcorrenciaSensorEntity>{
         try {
             const ocorrenciaSensor = await this.findOne(id, {
-                relations: ['grupoFamiliar', 'carro'],
+                relations: ['carroSensor', 'carroSensor.carro', 'carroSensor.sensor'],
             })
             if(!ocorrenciaSensor)
                 throw new HttpException(

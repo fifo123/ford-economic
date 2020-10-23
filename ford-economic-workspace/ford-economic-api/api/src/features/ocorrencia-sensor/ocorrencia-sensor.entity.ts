@@ -1,4 +1,5 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { CarroSensorEntity } from "../carro-sensor/carro-sensor.entity";
 
 @Entity({
     name:'OcorrenciaSensor'
@@ -8,16 +9,16 @@ export class OcorrenciaSensorEntity extends BaseEntity{
     id: number;
 
     @Column({
-        type:'varchar',
-        length: 255
+        type:'jsonb',
+        nullable: true,
     })
-    valor: string;
+    valor?: Object;
 
     @ManyToOne(
         () => CarroSensorEntity,
         carroSensor => carroSensor.ocorrenciaSensor,
     )
-    descricao: string;
+    carroSensor: CarroSensorEntity;
 
     @UpdateDateColumn()
     atualizado: Date;
