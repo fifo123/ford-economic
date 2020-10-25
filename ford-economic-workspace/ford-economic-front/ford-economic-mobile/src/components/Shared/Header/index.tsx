@@ -6,16 +6,20 @@ import FordLogo from './../../../assets/Ford_logo.svg';
 
 import MenuSvg from './../../../assets/menu.svg';
 
-const Logo: React.FC = () =>{
+const FordHeader: React.FC = () =>{
     return(
         <Container>
             <GridHeader>
-                <LogoHeader src={FordLogo}/>
+                <LogoHeader>
+                    <img src={FordLogo} width="121px" height="48px" />
+                </LogoHeader>
                 <TextHeader> Economic </TextHeader>
-                <MenuHeader src={MenuSvg}/>
+                <MenuHeader>
+                    <img src={MenuSvg} width="36px" height="29px" />
+                </ MenuHeader>
             </GridHeader>
         </Container>
     )
 };
 
-export default Logo;
+export default FordHeader;

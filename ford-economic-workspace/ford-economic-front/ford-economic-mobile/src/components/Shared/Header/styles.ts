@@ -8,7 +8,9 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
 
-    padding-top:11px;
+    width: 100%;
+    background-color: var(--darkblue);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
 
@@ -21,20 +23,24 @@ export const GridHeader = styled.div`
 
     grid-template-areas:
         'LG NM MN';       
-
-    background-color: var(--darkblue);
+    
+    width:100%;
 `;
 
-export const LogoHeader = styled.img`
+export const LogoHeader = styled.div`
     grid-area: LG;
 
     display: flex;
 
     flex-direction: column;
-    align-items: right;
+    align-items: center;
+
+    padding-top: 11px;
+    padding-left:12px;
+
 `;
 
-export const TextHeader = styled.label`
+export const TextHeader = styled.div`
     grid-area: NM;
     
     display: flex;
@@ -45,13 +51,16 @@ export const TextHeader = styled.label`
     font-size: 36px;
     color: var(--white);
     font-family: 'Mr Dafoe';
+    padding: 11px;
 `;
 
-export const MenuHeader = styled.img`
+export const MenuHeader = styled.div`
     grid-area: MN;
 
     display: flex;
 
     flex-direction: column;
-    align-items: left;
+    align-items: center;
+    padding-right: 4px;
+    padding-top: 21px;
 `;
