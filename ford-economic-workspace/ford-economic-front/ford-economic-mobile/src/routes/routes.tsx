@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import MainMenu from "../pages/MainMenu";
 import Sensores from "../pages/Sensores";
 import Tips from '../pages/Tips';
+import Compare from "../pages/Compare";
 
 const Routes = () => {
   return (
@@ -13,6 +14,7 @@ const Routes = () => {
       <Route component={MainMenu} path="/main" exact />
       <Route component={Sensores} path="/sensores" exact />
           <Route component={Tips} path="/tips" exact />
+      <Route component={Compare} path="/compare" exact />
     </BrowserRouter>
   );
 };
