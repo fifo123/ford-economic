@@ -7,6 +7,7 @@ import Sensores from "../pages/Sensores";
 import Tips from '../pages/Tips';
 import Compare from "../pages/Compare";
 import Relatorios from "../pages/Relatorios";
+import Localizacao from "../pages/Localizacao";
 
 const Routes = () => {
   return (
@@ -17,6 +18,7 @@ const Routes = () => {
           <Route component={Tips} path="/tips" exact />
       <Route component={Compare} path="/compare" exact />
       <Route component={Relatorios} path="/relatorios" exact />
+      <Route component={Localizacao} path="/localizacao" exact />
     </BrowserRouter>
   );
 };
