@@ -29,42 +29,63 @@ export class YourFordEntity extends BaseEntity {
 	@ManyToOne(
 		() => CaracteristicaEntity,
 		caracteristicaPrincipal => caracteristicaPrincipal.yourFord,
+		{
+			onDelete: 'CASCADE',
+		},
 	)
 	caracteristicaPrincipal: CaracteristicaEntity;
 
 	@ManyToOne(
 		() => CaracteristicaEntity,
 		caracteristicaSecundaria1 => caracteristicaSecundaria1.yourFord,
+		{
+			onDelete: 'CASCADE',
+		},
 	)
 	caracteristicaSecundaria1: CaracteristicaEntity;
 
 	@ManyToOne(
 		() => CaracteristicaEntity,
 		caracteristicaSecundaria2 => caracteristicaSecundaria2.yourFord,
+		{
+			onDelete: 'CASCADE',
+		},
 	)
 	caracteristicaSecundaria2: CaracteristicaEntity;
 
 	@ManyToOne(
 		() => UsoCarroEntity,
 		usoCarro1 => usoCarro1.yourFord,
+		{
+			onDelete: 'CASCADE',
+		},
 	)
 	usoCarro1: UsoCarroEntity;
 
 	@ManyToOne(
 		() => UsoCarroEntity,
 		usoCarro2 => usoCarro2.yourFord,
+		{
+			onDelete: 'CASCADE',
+		},
 	)
 	usoCarro2: UsoCarroEntity;
 
 	@ManyToOne(
 		() => ModeloEntity,
 		modelo => modelo.yourFord,
+		{
+			onDelete: 'CASCADE',
+		},
 	)
 	modelo: ModeloEntity;
 
 	@ManyToOne(
 		() => UsuarioEntity,
 		usuario => usuario.yourFord,
+		{
+			onDelete: 'CASCADE',
+		},
 	)
 	usuario: UsuarioEntity;
 

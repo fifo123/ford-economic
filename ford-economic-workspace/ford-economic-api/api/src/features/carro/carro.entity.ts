@@ -1,67 +1,79 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { LocalizacaoCarroEntity } from "../localizacao-carro/localizacao-carro.entity";
-import { UsuarioEntity } from "../usuario/usuario.entity";
-import { CarroSensorEntity } from "../carro-sensor/carro-sensor.entity";
+import {
+	BaseEntity,
+	Column,
+	CreateDateColumn,
+	Entity,
+	ManyToOne,
+	OneToMany,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+} from 'typeorm';
+import { LocalizacaoCarroEntity } from '../localizacao-carro/localizacao-carro.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
+import { CarroSensorEntity } from '../carro-sensor/carro-sensor.entity';
 
 @Entity({
-    name:'Carro'
+	name: 'Carro',
 })
-export class CarroEntity extends BaseEntity{
-    @PrimaryGeneratedColumn('increment')
-    id: number;
+export class CarroEntity extends BaseEntity {
+	@PrimaryGeneratedColumn('increment')
+	id: number;
 
-    @Column({
-        type:'varchar',
-        nullable: false,
-        length: 255,
-    })
-    modelo: string;
+	@Column({
+		type: 'varchar',
+		nullable: false,
+		length: 255,
+	})
+	modelo: string;
 
-    @Column({
-        type:'int',
-        nullable: false,
-    })
-    ano: number;
+	@Column({
+		type: 'int',
+		nullable: false,
+	})
+	ano: number;
 
-    @Column({
-        type:'varchar',
-        length: 7,
-        nullable: false
-    })
-    placa: string;
-    
-    @Column({
-        type:'varchar',
-        nullable: false,
-        length: 255
-    })
-    imagem: string;
-    
-    @Column({
-        type:'numeric',
-    })
-    quilometragem: number;
+	@Column({
+		type: 'varchar',
+		length: 7,
+		nullable: false,
+	})
+	placa: string;
 
-    @ManyToOne(
-        () => UsuarioEntity,
-        usuario => usuario.carro,
-    )
-    usuario: UsuarioEntity;
+	@Column({
+		type: 'varchar',
+		nullable: false,
+		length: 255,
+	})
+	imagem: string;
 
-    @OneToMany(
-        () => LocalizacaoCarroEntity,
-        localizacao => localizacao.carro,
-    )
-    localizacao: LocalizacaoCarroEntity[];
+	@Column({
+		type: 'numeric',
+	})
+	quilometragem: number;
 
-    @OneToMany(
+	@ManyToOne(
+		() => UsuarioEntity,
+		usuario => usuario.carro,
+		{
+			onDelete: 'CASCADE',
+		},
+	)
+	usuario: UsuarioEntity;
+
+	@OneToMany(
+		() => LocalizacaoCarroEntity,
+		localizacao => localizacao.carro,
+	)
+	localizacao: LocalizacaoCarroEntity[];
+
+	@OneToMany(
 		type => CarroSensorEntity,
 		carroSensor => carroSensor.carro,
 	)
 	carroSensor: CarroSensorEntity[];
 
-    @UpdateDateColumn()
-    atualizado: Date;
-    @CreateDateColumn()
-    criado: Date;
+	@UpdateDateColumn()
+	atualizado: Date;
+	@CreateDateColumn()
+	criado: Date;
 }

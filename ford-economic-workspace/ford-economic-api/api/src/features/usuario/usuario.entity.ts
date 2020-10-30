@@ -111,6 +111,9 @@ export class UsuarioEntity extends BaseEntity {
 	@ManyToOne(
 		() => GrupoFamiliarEntity,
 		grupoFamiliar => grupoFamiliar.usuarios,
+		{
+			onDelete: 'CASCADE',
+		},
 	)
 	grupoFamiliar: GrupoFamiliarEntity;
 
