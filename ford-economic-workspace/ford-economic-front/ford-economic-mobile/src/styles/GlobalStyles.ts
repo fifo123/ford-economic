@@ -21,6 +21,8 @@ export default createGlobalStyle`
     :root{
         --darkblue: #003478;
         --regularblue: #074A99;
+        --menuoptionblue: #0D4286;
+        --selecionarblue: #446CA1;
         --lightblue: #C2D4EA;
         --lightlblue: #E2F0FF;
         --white: #FFFFFF;

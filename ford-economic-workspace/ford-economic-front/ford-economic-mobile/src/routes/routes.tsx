@@ -8,6 +8,7 @@ import Tips from "../pages/Tips";
 import Compare from "../pages/Compare";
 import Relatorios from "../pages/Relatorios";
 import Economic from "../pages/Economic";
+import Localizacao from "../pages/Localizacao";
 
 const Routes = () => {
   return (
@@ -19,6 +20,7 @@ const Routes = () => {
       <Route component={Compare} path="/compare" exact />
       <Route component={Relatorios} path="/relatorios" exact />
       <Route component={Economic} path="/economic" exact />
+      <Route component={Localizacao} path="/localizacao" exact />
     </BrowserRouter>
   );
 };
