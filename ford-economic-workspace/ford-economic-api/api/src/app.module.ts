@@ -10,6 +10,7 @@ import { CarroSensorModule } from './features/carro-sensor/carro-sensor.module';
 import { OcorrenciaSensorModule } from './features/ocorrencia-sensor/ocorrencia-sensor.module';
 import { ModeloModule } from './features/your-ford/modelo/modelo.module';
 import { AppController } from './app.controller';
+import { CaracteristicaModule } from './features/your-ford/caracteristica/caracteristica.module';
 
 @Module({
 	imports: [
@@ -22,6 +23,7 @@ import { AppController } from './app.controller';
 		CarroSensorModule,
 		TypeOrmModule.forRoot(typeOrmConfig),
 		ModeloModule,
+		CaracteristicaModule,
 	],
 	controllers: [AppController],
 })
