@@ -21,6 +21,9 @@ export class CarroSensorEntity extends BaseEntity {
 	@ManyToOne(
 		() => CarroEntity,
 		carro => carro.carroSensor,
+		{
+			onDelete: 'CASCADE',
+		},
 	)
 	carro: CarroEntity;
 
@@ -36,6 +39,9 @@ export class CarroSensorEntity extends BaseEntity {
 	@OneToMany(
 		type => OcorrenciaSensorEntity,
 		ocorrencia => ocorrencia.carroSensor,
+		{
+			cascade: true,
+		},
 	)
 	ocorrenciaSensor: OcorrenciaSensorEntity[];
 
