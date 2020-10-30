@@ -3,9 +3,11 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	OneToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
+import { YourFordEntity } from '../your-ford.entity';
 
 @Entity({
 	name: 'UsoCarro',
@@ -27,6 +29,12 @@ export class UsoCarroEntity extends BaseEntity {
 		nullable: false,
 	})
 	icone: string;
+
+	@OneToMany(
+		() => YourFordEntity,
+		yourFord => yourFord.usoCarro1,
+	)
+	yourFord: YourFordEntity[];
 
 	@UpdateDateColumn()
 	atualizado: Date;

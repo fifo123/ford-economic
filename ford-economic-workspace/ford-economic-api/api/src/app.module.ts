@@ -12,6 +12,7 @@ import { ModeloModule } from './features/your-ford/modelo/modelo.module';
 import { AppController } from './app.controller';
 import { CaracteristicaModule } from './features/your-ford/caracteristica/caracteristica.module';
 import { UsoCarroModule } from './features/your-ford/uso-carro/uso-carro.module';
+import { YourFordModule } from './features/your-ford/your-ford.module';
 
 @Module({
 	imports: [
@@ -26,6 +27,7 @@ import { UsoCarroModule } from './features/your-ford/uso-carro/uso-carro.module'
 		ModeloModule,
 		CaracteristicaModule,
 		UsoCarroModule,
+		YourFordModule,
 	],
 	controllers: [AppController],
 })
