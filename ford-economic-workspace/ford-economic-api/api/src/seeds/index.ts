@@ -24,9 +24,9 @@ export async function seed() {
 				await sensoresRepository.save(valor);
 			});
 			await seedRepository.save({ seed: 'sensores' });
-			logger.log('Adicionando a Seed de Sensores');
+			logger.verbose('Adicionando a Seed de Sensores');
 		} else {
-			logger.log('Não é necessário criar a Seed de Sensores');
+			logger.debug('Não é necessário criar a Seed de Sensores');
 		}
 
 		const caracteristicaSeed = await seedRepository.find({
@@ -40,9 +40,9 @@ export async function seed() {
 				await caracteristicaRepository.save(valor);
 			});
 			await seedRepository.save({ seed: 'caracteristica' });
-			logger.log('Adicionando a Seed de Características');
+			logger.verbose('Adicionando a Seed de Características');
 		} else {
-			logger.log('Não é necessário criar a Seed de Características');
+			logger.debug('Não é necessário criar a Seed de Características');
 		}
 
 		const modeloSeed = await seedRepository.find({
@@ -54,9 +54,9 @@ export async function seed() {
 				await modeloRepository.save(valor);
 			});
 			await seedRepository.save({ seed: 'modelo' });
-			logger.log('Adicionando a Seed de Modelos');
+			logger.verbose('Adicionando a Seed de Modelos');
 		} else {
-			logger.log('Não é necessário criar a Seed de Modelos');
+			logger.debug('Não é necessário criar a Seed de Modelos');
 		}
 
 		const usoCarroSeed = await seedRepository.find({
@@ -70,9 +70,9 @@ export async function seed() {
 				await usoCarroRepository.save(valor);
 			});
 			await seedRepository.save({ seed: 'uso-carro' });
-			logger.log('Adicionando a Seed de Usos do Carro');
+			logger.verbose('Adicionando a Seed de Usos do Carro');
 		} else {
-			logger.log('Não é necessário criar a Seed de Usos do Carro');
+			logger.debug('Não é necessário criar a Seed de Usos do Carro');
 		}
 	} catch (error) {
 		throw error;
