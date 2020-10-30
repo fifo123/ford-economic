@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { EntityRepository, Repository } from 'typeorm';
+import { AtualizarYourFordDto } from './dto/atualizar-your-ford.dto';
 import { YourFordDto } from './dto/your-ford.dto';
 import { ListarYourFords } from './interface/listar-your-fords.interface';
 import { YourFordEntity } from './your-ford.entity';
@@ -62,6 +63,34 @@ export class YourFordRepository extends Repository<YourFordEntity> {
 		} catch (error) {
 			throw new HttpException(
 				'Erro ao listar Your Ford',
+				HttpStatus.BAD_REQUEST,
+			);
+		}
+	}
+
+	async atualizarYourFord(
+		id: number,
+		data: AtualizarYourFordDto,
+	): Promise<YourFordEntity> {
+		try {
+			await this.update(id, data);
+			return this.listarYourFord(id);
+		} catch (error) {
+			throw new HttpException(
+				'Erro ao atualizar YourFord',
+				HttpStatus.BAD_REQUEST,
+			);
+		}
+	}
+
+	async deletarYourFord(id: number): Promise<YourFordEntity> {
+		try {
+			const yourFord = await this.findOne(id);
+			this.delete(id);
+			return yourFord;
+		} catch (error) {
+			throw new HttpException(
+				'Erro ao deletar YourFord',
 				HttpStatus.BAD_REQUEST,
 			);
 		}

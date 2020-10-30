@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { AtualizarYourFordDto } from './dto/atualizar-your-ford.dto';
 import { YourFordDto } from './dto/your-ford.dto';
 import { ListarYourFords } from './interface/listar-your-fords.interface';
 import { YourFordEntity } from './your-ford.entity';
@@ -18,5 +19,16 @@ export class YourFordService {
 
 	async listarYourFord(id: number): Promise<YourFordEntity> {
 		return this.yourFordRepository.listarYourFord(id);
+	}
+
+	async atualizarYourFord(
+		id: number,
+		data: AtualizarYourFordDto,
+	): Promise<YourFordEntity> {
+		return this.yourFordRepository.atualizarYourFord(id, data);
+	}
+
+	async deletarYourFord(id: number): Promise<YourFordEntity> {
+		return this.yourFordRepository.deletarYourFord(id);
 	}
 }
