@@ -2,11 +2,13 @@ import { Logger } from '@nestjs/common';
 import { SensorEntity } from 'src/features/sensor/sensor.entity';
 import { CaracteristicaEntity } from 'src/features/your-ford/caracteristica/caracteristica.entity';
 import { ModeloEntity } from 'src/features/your-ford/modelo/modelo.entity';
+import { UsoCarroEntity } from 'src/features/your-ford/uso-carro/uso-carro.entity';
 import { getRepository } from 'typeorm';
 import { valoresCaracteristicas } from './caracteristicas.seed';
 import { valoresModelos } from './modelos.seed';
 import { Seed } from './seeds.entity';
 import { valoresSensores } from './sensores.seed';
+import { valoresUsosCarro } from './usos-carro.seed';
 
 export async function seed() {
 	try {
@@ -55,6 +57,22 @@ export async function seed() {
 			logger.log('Adicionando a Seed de Modelos');
 		} else {
 			logger.log('Não é necessário criar a Seed de Modelos');
+		}
+
+		const usoCarroSeed = await seedRepository.find({
+			where: { seed: 'uso-carro' },
+		});
+		if (usoCarroSeed.length == 0) {
+			const usoCarroRepository = getRepository<UsoCarroEntity>(
+				'UsoCarro',
+			);
+			valoresUsosCarro.map(async valor => {
+				await usoCarroRepository.save(valor);
+			});
+			await seedRepository.save({ seed: 'uso-carro' });
+			logger.log('Adicionando a Seed de Usos do Carro');
+		} else {
+			logger.log('Não é necessário criar a Seed de Usos do Carro');
 		}
 	} catch (error) {
 		throw error;
