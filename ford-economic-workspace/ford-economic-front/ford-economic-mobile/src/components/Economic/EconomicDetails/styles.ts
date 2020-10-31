@@ -27,50 +27,50 @@ export const GridEconomicDetails = styled.div`
   border-radius: 0 0 12px 12px;
 `;
 
-export const DetailLabelConatiner = styled.div`
-  grid-area: AA, AB, AC, BA, BB, BC;
+// export const DetailLabelConatiner = styled.div`
+//   grid-area: AA, AB, AC, BA, BB, BC;
 
-  width: 86px;
-  height: 87px;
+//   width: 86px;
+//   height: 87px;
 
-  justify-content: center;
-  text-align: center;
-  align-items: center;
+//   justify-content: center;
+//   text-align: center;
+//   align-items: center;
 
-  margin-top: 20px;
+//   margin-top: 20px;
 
-  padding-top: 6px;
-  padding-bottom: 15px;
-  color: var(--white);
-  font-size: 15px;
+//   padding-top: 6px;
+//   padding-bottom: 15px;
+//   color: var(--white);
+//   font-size: 15px;
 
-  border-radius: 10px;
-  background-color: var(--darkblue);
-`;
+//   border-radius: 10px;
+//   background-color: var(--darkblue);
+// `;
 
-export const DetailTitleLabel = styled.h1`
-  display: flex;
+// export const DetailTitleLabel = styled.h1`
+//   display: flex;
 
-  justify-content: center;
+//   justify-content: center;
 
-  align-items: center;
-  text-align: center;
-  font-family: "Roboto Condensed";
+//   align-items: center;
+//   text-align: center;
+//   font-family: "Roboto Condensed";
 
-  height: 31px;
-  margin-bottom: 4px;
-  font-size: 14px;
-  font-weight: 700;
-`;
+//   height: 31px;
+//   margin-bottom: 4px;
+//   font-size: 14px;
+//   font-weight: 700;
+// `;
 
-export const DetailInfoLabel = styled.label`
-  display: flex;
+// export const DetailInfoLabel = styled.label`
+//   display: flex;
 
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 31px;
-  font-family: "Roboto Condensed";
+//   justify-content: center;
+//   align-items: center;
+//   text-align: center;
+//   height: 31px;
+//   font-family: "Roboto Condensed";
 
-  font-weight: 300;
-`;
+//   font-weight: 300;
+// `;
