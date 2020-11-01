@@ -28,6 +28,12 @@ export class SensorEntity extends BaseEntity {
 	})
 	descricao: string;
 
+	@Column({
+		type: 'varchar',
+		length: 255,
+	})
+	icone: string;
+
 	@OneToMany(
 		type => CarroSensorEntity,
 		carroSensor => carroSensor.carro,

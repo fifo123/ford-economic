@@ -7,25 +7,32 @@ import { SensorRepository } from './sensor.repository';
 
 @Injectable()
 export class SensorService {
-    constructor(private readonly sensorRepository: SensorRepository){}
+	constructor(private readonly sensorRepository: SensorRepository) {}
 
-    async criarSensor(data: SensorDto): Promise<SensorEntity>{
-        return this.sensorRepository.criarSensor(data);
-    }
+	async criarSensor(data: SensorDto, icone: string): Promise<SensorEntity> {
+		const sensor: SensorDto = { ...data, icone };
+		return this.sensorRepository.criarSensor(sensor);
+	}
 
-    async listarSensores(): Promise<ListarSensores>{
-        return this.sensorRepository.listarSensores();
-    }
+	async listarSensores(): Promise<ListarSensores> {
+		return this.sensorRepository.listarSensores();
+	}
 
-    async listarSensor(id: number): Promise<SensorEntity>{
-        return this.sensorRepository.listarSensor(id);
-    }
+	async listarSensor(id: number): Promise<SensorEntity> {
+		return this.sensorRepository.listarSensor(id);
+	}
 
-    async atualizarSensor(id: number, data: AtualizarSensorDto): Promise<SensorEntity>{
-        return this.sensorRepository.atualizarSensor(id,data);
-    }
+	async atualizarSensor(
+		id: number,
+		data: AtualizarSensorDto,
+		filename?: string,
+	): Promise<SensorEntity> {
+		if (filename) data.icone = filename;
 
-    async deletarSensor(id: number): Promise<SensorEntity>{
-        return this.sensorRepository.deletarSensor(id);
-    }
+		return this.sensorRepository.atualizarSensor(id, data);
+	}
+
+	async deletarSensor(id: number): Promise<SensorEntity> {
+		return this.sensorRepository.deletarSensor(id);
+	}
 }
