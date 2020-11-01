@@ -12,7 +12,16 @@ const SelecaoCarroInnerLabel: React.FC<{
     <>
       <CarInfoLabel orientation={props.orientation} padding={props.padding}>
         <CarInfoLabelTitle>{props.title}</CarInfoLabelTitle>
-        <CarInfoLabelDetail>{props.detail}</CarInfoLabelDetail>
+        <div
+          style={{
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            color: "white",
+          }}
+        >
+          <CarInfoLabelDetail>{props.detail}</CarInfoLabelDetail>
+        </div>
       </CarInfoLabel>
     </>
   );
