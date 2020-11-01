@@ -20,4 +20,8 @@ export const CarSelectInfoGrid = styled.label`
   height: 87px;
 
   border-radius: 10px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

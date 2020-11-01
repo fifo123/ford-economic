@@ -16,10 +16,17 @@ const CorpoSelecaoCarro: React.FC = () => {
     },
     {
       modelo: "FORD MUSTANG GT",
-      kmTotal: 1240,
-      atribuido: "Rosane Filha Guedes Junior",
+      kmTotal: 1580,
+      atribuido:
+        "Pedro de Alcântara João Carlos Leopoldo Salvador Bibiano Francisco Xavier de Paula Leocádio Miguel Gabriel Rafael Gonzaga de Habsburgo-Lorena e Bragança",
       imagemCarro:
         "http://localhost:3000/get-image/?imagem=1604241813037-ford_mustang.jpg",
+    },
+    {
+      modelo: "FORD TERRITORY",
+      kmTotal: 1240,
+      atribuido: "Rosane Filha Guedes Junior",
+      imagemCarro: "../../assets/carro.jpg",
     },
   ];
 
@@ -57,7 +64,10 @@ const CorpoSelecaoCarro: React.FC = () => {
         seletorEsquerda={trocarCarroEsquerda}
       />
       <CarNameSelected> {carro.modelo} </CarNameSelected>
-      <SelecaoCarroDetalhes />
+      <SelecaoCarroDetalhes
+        kmTotal={carro.kmTotal}
+        atribuido={carro.atribuido}
+      />
       <SelecaoCarrosBotoes>Selecionar</SelecaoCarrosBotoes>
       <SelecaoCarrosBotoes>Localizar</SelecaoCarrosBotoes>
     </>

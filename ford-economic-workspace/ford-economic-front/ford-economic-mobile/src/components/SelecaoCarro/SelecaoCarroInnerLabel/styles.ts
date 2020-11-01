@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CarInfoLabel = styled.label<Props>`
+export const CarInfoLabel = styled.div<Props>`
   grid-area: KM, AT;
 
   display: grid;
@@ -14,7 +14,8 @@ export const CarInfoLabel = styled.label<Props>`
 
   text-align: ${(p) => p.orientation};
   justify-content: ${(p) => p.orientation};
-  padding-left: ${(p) => p.paddingLeft};
+  padding-left: ${(p) => p.padding};
+  padding-right: ${(p) => p.padding};
 
   align-items: center;
 
@@ -22,11 +23,15 @@ export const CarInfoLabel = styled.label<Props>`
 
   background-color: var(--darkblue);
   border-radius: 10px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 interface Props {
   orientation: any;
-  paddingLeft: any;
+  padding: any;
 }
 
 export const CarInfoLabelTitle = styled.h1`

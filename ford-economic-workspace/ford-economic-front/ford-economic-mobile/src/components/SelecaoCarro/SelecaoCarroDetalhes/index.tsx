@@ -4,20 +4,22 @@ import Carro from "../../../assets/carro.jpg";
 import SelecaoCarroInnerLabel from "../SelecaoCarroInnerLabel/";
 import { CarSelectInfoGrid } from "./styles";
 
-const SelecaoCarroDetalhes: React.FC = () => {
+const SelecaoCarroDetalhes: React.FC<{ kmTotal: number; atribuido: string }> = (
+  props
+) => {
   return (
     <>
       <CarSelectInfoGrid>
         <SelecaoCarroInnerLabel
           title="KM TOTAL"
-          detail="23747 Km"
+          detail={props.kmTotal.toString() + " Km"}
           orientation={"center"}
         />
         <SelecaoCarroInnerLabel
           title="ATRIBUÍDO À"
-          detail="Rosane Filha Guedes"
+          detail={props.atribuido}
           orientation={"left"}
-          paddingLeft={"9px"}
+          padding={"9px"}
         />
       </CarSelectInfoGrid>
     </>

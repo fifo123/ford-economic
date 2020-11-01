@@ -6,14 +6,11 @@ const SelecaoCarroInnerLabel: React.FC<{
   title: string;
   detail: string;
   orientation: any;
-  paddingLeft?: any;
+  padding?: any;
 }> = (props) => {
   return (
     <>
-      <CarInfoLabel
-        orientation={props.orientation}
-        paddingLeft={props.paddingLeft}
-      >
+      <CarInfoLabel orientation={props.orientation} padding={props.padding}>
         <CarInfoLabelTitle>{props.title}</CarInfoLabelTitle>
         <CarInfoLabelDetail>{props.detail}</CarInfoLabelDetail>
       </CarInfoLabel>
