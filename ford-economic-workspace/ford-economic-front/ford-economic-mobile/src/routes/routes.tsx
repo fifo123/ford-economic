@@ -4,10 +4,11 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import MainMenu from "../pages/MainMenu";
 import Sensores from "../pages/Sensores";
-import Tips from '../pages/Tips';
+import Tips from "../pages/Tips";
 import Compare from "../pages/Compare";
 import Relatorios from "../pages/Relatorios";
 import Localizacao from "../pages/Localizacao";
+import SelecaoCarro from "../pages/SelecaoCarro";
 
 const Routes = () => {
   return (
@@ -15,10 +16,11 @@ const Routes = () => {
       <Route component={Login} path="/" exact />
       <Route component={MainMenu} path="/main" exact />
       <Route component={Sensores} path="/sensores" exact />
-          <Route component={Tips} path="/tips" exact />
+      <Route component={Tips} path="/tips" exact />
       <Route component={Compare} path="/compare" exact />
       <Route component={Relatorios} path="/relatorios" exact />
       <Route component={Localizacao} path="/localizacao" exact />
+      <Route component={SelecaoCarro} path="/selecionar" exact />
     </BrowserRouter>
   );
 };
