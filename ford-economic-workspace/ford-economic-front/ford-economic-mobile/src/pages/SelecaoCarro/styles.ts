@@ -12,7 +12,7 @@ export const CarroSelecaoGrid = styled.div`
   display: grid;
 
   grid-template-columns: auto;
-  grid-template-rows: 75px 121px 207px 47px 94px 55px auto;
+  grid-template-rows: 75px 91px 207px 47px 94px 55px auto;
 
   grid-template-areas:
     "HD"

@@ -5,7 +5,7 @@ export const DivSelecaoCarro = styled.div`
 
   display: grid;
 
-  grid-template-columns: 56px auto 56px;
+  grid-template-columns: 30px auto 30px;
   grid-template-rows: auto;
 
   grid-template-areas: "RS IM LS";
@@ -17,7 +17,7 @@ export const ImagemCarroSelecionado = styled.img`
   display: flex;
   align-items: center;
 
-  height: 192px;
+  height: 200px;
   border-radius: 24px;
 `;
 
