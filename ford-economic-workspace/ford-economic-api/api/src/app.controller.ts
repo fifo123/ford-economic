@@ -11,6 +11,9 @@ import {
 export class AppController {
 	@Get('get-image/')
 	getImagem(@Query('imagem') imagem: string, @Res() res: any) {
+		if (imagem == '') {
+			return res.sendFile('not_found.svg', { root: './assets' });
+		}
 		if (imagem == 'not_found.svg')
 			return res.sendFile('not_found.svg', { root: './assets' });
 		if (imagem.indexOf('../assets') != -1) {
@@ -19,7 +22,6 @@ export class AppController {
 			return res.sendFile(asset, { root: './assets' }, (err: any) => {
 				if (err) {
 					res.sendFile('not_found.svg', { root: './assets' });
-					throw new HttpException(err, HttpStatus.BAD_REQUEST);
 				}
 			});
 		}
@@ -27,7 +29,6 @@ export class AppController {
 		return res.sendFile(imagem, { root: './files' }, (err: any) => {
 			if (err) {
 				res.sendFile('not_found.svg', { root: './assets' });
-				throw new HttpException(err, HttpStatus.BAD_REQUEST);
 			}
 		});
 	}
