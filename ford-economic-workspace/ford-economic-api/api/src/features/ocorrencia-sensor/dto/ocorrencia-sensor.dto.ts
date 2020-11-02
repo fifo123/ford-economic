@@ -1,12 +1,5 @@
-import {
-	IsNotEmpty,
-	IsNumber,
-	IsOptional,
-	ValidateNested,
-} from 'class-validator';
+import { IsNotEmpty, IsNumber, ValidateNested } from 'class-validator';
 import { CarroSensorEntity } from 'src/features/carro-sensor/carro-sensor.entity';
-import { ArCondicionadoDto } from './sensor-ar-condicionado.dto';
-import { QuilometragemDto } from './sensor-quilometragem.dto';
 
 export class OcorrenciaSensorDto {
 	@ValidateNested({

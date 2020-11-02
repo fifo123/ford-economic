@@ -20,7 +20,7 @@ export class OcorrenciaSensorEntity extends BaseEntity {
 		type: 'jsonb',
 		nullable: true,
 	})
-	valor?: Object;
+	valor?: any;
 
 	@ManyToOne(
 		() => CarroSensorEntity,
