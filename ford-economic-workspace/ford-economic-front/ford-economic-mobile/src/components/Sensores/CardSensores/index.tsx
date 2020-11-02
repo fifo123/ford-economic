@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
   ContainerSensores,
   DivSensoresNome,
@@ -14,71 +14,49 @@ import CombustivelLogo from "../../../assets/combustivel.svg";
 import FrenagemLogo from "../../../assets/frenagem.svg";
 import GasesLogo from "../../../assets/gases.svg";
 import MotorLogo from "../../../assets/motor.svg";
+import api from "../../../services";
+import { FeatureSensores } from "../sensores.interface";
 
 const CardSensores: React.FC = () => {
+  const [sensores, setSensores] = useState<FeatureSensores[]>([]);
+
+  useEffect(() => {
+    api.get("/pages/sensores/5").then((response) => {
+      setSensores(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    setInterval(() => {
+      api.get("/pages/sensores/5").then((response) => {
+        setSensores(response.data);
+      });
+    }, 5000);
+  }, []);
+
   return (
     <ContainerSensores>
       <UlSensores>
-        <LiSensores>
-          <div>
-            <img src={ArCondicionadoLogo} width="30px" height="30px" />
-          </div>
-          <DivSensoresNome>Ar-Condicionado</DivSensoresNome>
-          <div>
-            <DivStatusSensor colorStatus="var(--darkred)" />
-            <LabelStatus>Status</LabelStatus>
-          </div>
-        </LiSensores>
-        <LiSensores>
-          <div>
-            <img src={QuilmetragemLogo} width="30px" height="30px" />
-          </div>
-          <DivSensoresNome>Quilometragem</DivSensoresNome>
-          <div>
-            <DivStatusSensor colorStatus="var(--yellow)" />
-            <LabelStatus>Status</LabelStatus>
-          </div>
-        </LiSensores>
-        <LiSensores>
-          <div>
-            <img src={CombustivelLogo} width="30px" height="30px" />
-          </div>
-          <DivSensoresNome>Combustível</DivSensoresNome>
-          <div>
-            <DivStatusSensor colorStatus="var(--orange)" />
-            <LabelStatus>Status</LabelStatus>
-          </div>
-        </LiSensores>
-        <LiSensores>
-          <div>
-            <img src={FrenagemLogo} width="30px" height="30px" />
-          </div>
-          <DivSensoresNome>Frenagem</DivSensoresNome>
-          <div>
-            <DivStatusSensor colorStatus="var(--darkgreen)" />
-            <LabelStatus>Status</LabelStatus>
-          </div>
-        </LiSensores>
-        <LiSensores>
-          <div>
-            <img src={GasesLogo} width="30px" height="30px" />
-          </div>
-          <DivSensoresNome>Gases</DivSensoresNome>
-          <div>
-            <DivStatusSensor colorStatus="var(--darkred)" />
-            <LabelStatus>Status</LabelStatus>
-          </div>
-        </LiSensores>
-        <LiSensores>
-          <div>
-            <img src={MotorLogo} width="30px" height="30px" />
-          </div>
-          <DivSensoresNome>Motor</DivSensoresNome>
-          <div>
-            <DivStatusSensor colorStatus="var(--yellow)" />
-            <LabelStatus>Status</LabelStatus>
-          </div>
-        </LiSensores>
+        {sensores.map((sensor) => (
+          <LiSensores>
+            <div>
+              <img
+                src={`http://localhost:3000/get-image/?imagem=${sensor.icone}`}
+                width="30px"
+                height="30px"
+              />
+            </div>
+            <DivSensoresNome>{sensor.nome}</DivSensoresNome>
+            <div>
+              <DivStatusSensor
+                colorStatus={
+                  sensor.ligado ? "var(--darkgreen)" : "var(--darkred)"
+                }
+              />
+              <LabelStatus>Status</LabelStatus>
+            </div>
+          </LiSensores>
+        ))}
       </UlSensores>
     </ContainerSensores>
   );
