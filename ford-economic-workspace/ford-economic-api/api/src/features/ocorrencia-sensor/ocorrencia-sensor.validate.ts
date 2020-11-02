@@ -6,6 +6,11 @@ import { OcorrenciaSensorEntity } from './ocorrencia-sensor.entity';
 
 export async function validateOcorrenciaSensor(data: OcorrenciaSensorDto) {
 	try {
+		const carroSensor = getRepository<CarroSensorEntity>('CarroSensor');
+		const tipoSensor = await carroSensor.findOne(data.carroSensor, {
+			relations: ['sensor'],
+		});
+
 		const verificaLigado = getRepository<OcorrenciaSensorEntity>(
 			'OcorrenciaSensor',
 		);
@@ -21,16 +26,18 @@ export async function validateOcorrenciaSensor(data: OcorrenciaSensorDto) {
 			OcorrenciaSensorEntity
 		>();
 
-		if (ocorrenciasIgnicao[0].valor.ligado == false) {
-			throw new HttpException(
-				'O carro está desligado',
-				HttpStatus.BAD_REQUEST,
-			);
+		if (
+			ocorrenciasIgnicao.length > 0
+				? ocorrenciasIgnicao[0].valor.ligado == false
+				: 1
+		) {
+			if (tipoSensor.sensor.nome != 'Ignição') {
+				throw new HttpException(
+					'O carro está desligado',
+					HttpStatus.BAD_REQUEST,
+				);
+			}
 		}
-		const carroSensor = getRepository<CarroSensorEntity>('CarroSensor');
-		const tipoSensor = await carroSensor.findOne(data.carroSensor, {
-			relations: ['sensor'],
-		});
 
 		if (!tipoSensor) {
 			throw new HttpException(
@@ -45,17 +52,15 @@ export async function validateOcorrenciaSensor(data: OcorrenciaSensorDto) {
 			data.valor.nivelRuido != undefined &&
 			typeof data.valor.nivelRuido == 'number' &&
 			data.valor.temperatura != undefined &&
-			typeof data.valor.temperatura == 'number' &&
-			data.valor.tempoLigado != undefined &&
-			typeof data.valor.tempoLigado == 'number'
+			typeof data.valor.temperatura == 'number'
 		) {
 			return true;
 		} else if (tipoSensor.sensor.nome == 'Ar-Condicionado') {
-			parametros = 'nivelRuido, temperatura, tempoLigado';
+			parametros = 'nivelRuido, temperatura';
 		}
 
 		if (
-			tipoSensor.sensor.nome == 'Uso Gerais' &&
+			tipoSensor.sensor.nome == 'Uso Geral' &&
 			data.valor.kmTotal != undefined &&
 			typeof data.valor.kmTotal == 'number' &&
 			data.valor.velocidadeAtual != undefined &&
@@ -119,7 +124,7 @@ export async function validateOcorrenciaSensor(data: OcorrenciaSensorDto) {
 			data.valor.temperaturaMotor != undefined &&
 			typeof data.valor.temperaturaMotor == 'number' &&
 			data.valor.qtdOleo != undefined &&
-			typeof data.valor.qtdOleo == 'boolean'
+			typeof data.valor.qtdOleo == 'number'
 		) {
 			return true;
 		} else if (tipoSensor.sensor.nome == 'Motor') {

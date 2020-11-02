@@ -7,8 +7,8 @@ export const valoresSensores: SensorDto[] = [
 		icone: '../assets/ar-condicionado.svg',
 	},
 	{
-		descricao: 'Sensor para medição de quilometragem',
-		nome: 'Uso Gerais',
+		descricao: 'Sensor geral do sistema',
+		nome: 'Uso Geral',
 		icone: '../assets/direcao.svg',
 	},
 	{
