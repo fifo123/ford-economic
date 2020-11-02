@@ -5,6 +5,8 @@ import { CarroSensorEntity } from './carro-sensor.entity';
 import { AtualizarCarroSensorDto } from './dto/atualizar-carro-sensor.dto';
 import { CarroSensorDto } from './dto/carro-sensor.dto';
 import { ListarCarroSensores } from './interface/listar-carro-sensores.interface';
+import { FeatureSensores } from './interface/feature-sensores.interface';
+import { QueryFeatureSensores } from './interface/query-feature-sensores.interface';
 
 @EntityRepository(CarroSensorEntity)
 export class CarroSensorRepository extends Repository<CarroSensorEntity> {
@@ -94,5 +96,48 @@ export class CarroSensorRepository extends Repository<CarroSensorEntity> {
 				HttpStatus.BAD_REQUEST,
 			);
 		}
+	}
+
+	async featureSensores(idCarro: number) {
+		try {
+			const query = this.createQueryBuilder('CarroSensor');
+			query.innerJoin('CarroSensor.sensor', 'Sensor');
+			query.innerJoin('CarroSensor.carro', 'Carro');
+			query.leftJoin('CarroSensor.ocorrenciaSensor', 'OcorrenciaSensor');
+			query.select('Sensor.nome', 'nomeSensor');
+			query.addSelect('Sensor.icone', 'iconeSensor');
+			query.where('Carro.id = :id', {
+				id: idCarro,
+			});
+			query.groupBy('Sensor.nome, Sensor.icone');
+
+			const sensores = await query.getRawMany<QueryFeatureSensores>();
+
+			query.andWhere(
+				`OcorrenciaSensor.criado >= current_timestamp - '1 minute 30 second'::interval`,
+			);
+			const sensoresOnline = await query.getRawMany<
+				QueryFeatureSensores
+			>();
+
+			const nomesSensoresOnlines = sensoresOnline.map(
+				sensor => sensor.nomeSensor,
+			);
+			const featureSensores: FeatureSensores[] = sensores.map(sensor => {
+				if (nomesSensoresOnlines.indexOf(sensor.nomeSensor) >= 0) {
+					return {
+						icone: sensor.iconeSensor,
+						ligado: true,
+						nome: sensor.nomeSensor,
+					};
+				}
+				return {
+					icone: sensor.iconeSensor,
+					ligado: false,
+					nome: sensor.nomeSensor,
+				};
+			});
+			return featureSensores;
+		} catch (error) {}
 	}
 }

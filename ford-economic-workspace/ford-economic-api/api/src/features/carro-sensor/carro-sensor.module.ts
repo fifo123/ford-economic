@@ -5,8 +5,9 @@ import { CarroSensorRepository } from './carro-sensor.repository';
 import { CarroSensorService } from './carro-sensor.service';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([CarroSensorRepository])],
-  controllers: [CarroSensorController],
-  providers: [CarroSensorService]
+	imports: [TypeOrmModule.forFeature([CarroSensorRepository])],
+	controllers: [CarroSensorController],
+	providers: [CarroSensorService],
+	exports: [CarroSensorService],
 })
 export class CarroSensorModule {}
