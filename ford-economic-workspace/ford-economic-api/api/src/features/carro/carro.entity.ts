@@ -48,8 +48,28 @@ export class CarroEntity extends BaseEntity {
 
 	@Column({
 		type: 'numeric',
+		nullable: true,
 	})
 	quilometragem: number;
+
+	@Column({
+		type: 'varchar',
+		nullable: false,
+		length: 255,
+	})
+	motor: string;
+
+	@Column({
+		type: 'numeric',
+		nullable: false,
+	})
+	potencia: number;
+
+	@Column({
+		type: 'numeric',
+		nullable: false,
+	})
+	cargaBateria: number;
 
 	@ManyToOne(
 		() => UsuarioEntity,

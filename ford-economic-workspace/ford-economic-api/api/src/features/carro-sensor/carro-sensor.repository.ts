@@ -18,7 +18,7 @@ export class CarroSensorRepository extends Repository<CarroSensorEntity> {
 			});
 			if (validateSensor.length > 0) {
 				throw new HttpException(
-					'Erro ao salvar carro',
+					'Erro ao salvar carro, já possui esse sensor',
 					HttpStatus.BAD_REQUEST,
 				);
 			}
