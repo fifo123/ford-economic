@@ -10,6 +10,12 @@ import Relatorios from "../pages/Relatorios";
 import Economic from "../pages/Economic";
 import Localizacao from "../pages/Localizacao";
 import SelecaoCarro from "../pages/SelecaoCarro";
+import YourFordMenu from "../pages/YourFord/YourFordMenu";
+import YourFordSelecionarCarro from "../pages/YourFord/YourFordSelecionarCarro";
+import YourFordSelecionarCPrincipal from "../pages/YourFord/YourFordCaracteristicaPrincipal";
+import YourFordSelecionarCSecundaria from "../pages/YourFord/YourFordCaracteristicasSecundarias";
+import YourFordSelecionarUsoCarro from "../pages/YourFord/YourFordUsoCarro";
+import YourFordFinalizacao from "../pages/YourFord/YourFordFinalizacao";
 
 const Routes = () => {
   return (
@@ -23,6 +29,32 @@ const Routes = () => {
       <Route component={Economic} path="/economic" exact />
       <Route component={Localizacao} path="/localizacao" exact />
       <Route component={SelecaoCarro} path="/selecionar" exact />
+      <Route component={YourFordMenu} path="/your-ford-menu" exact />
+      <Route
+        component={YourFordSelecionarCPrincipal}
+        path="/your-ford-principal"
+        exact
+      />
+      <Route
+        component={YourFordSelecionarCarro}
+        path="/your-ford-selecionar"
+        exact
+      />
+      <Route
+        component={YourFordSelecionarCSecundaria}
+        path="/your-ford-secundaria"
+        exact
+      />
+      <Route
+        component={YourFordSelecionarUsoCarro}
+        path="/your-ford-uso"
+        exact
+      />
+      <Route
+        component={YourFordFinalizacao}
+        path="/your-ford-finalizacao"
+        exact
+      />
     </BrowserRouter>
   );
 };
