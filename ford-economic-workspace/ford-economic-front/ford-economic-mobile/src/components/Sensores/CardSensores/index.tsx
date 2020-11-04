@@ -8,12 +8,6 @@ import {
   UlSensores,
 } from "./styles";
 
-import ArCondicionadoLogo from "../../../assets/arcondicionado.svg";
-import QuilmetragemLogo from "../../../assets/quilometragem.svg";
-import CombustivelLogo from "../../../assets/combustivel.svg";
-import FrenagemLogo from "../../../assets/frenagem.svg";
-import GasesLogo from "../../../assets/gases.svg";
-import MotorLogo from "../../../assets/motor.svg";
 import api from "../../../services";
 import { FeatureSensores } from "../sensores.interface";
 
