@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ContainerSensores,
   DivSensoresNome,
@@ -8,12 +8,6 @@ import {
   UlSensores,
 } from "./styles";
 
-import ArCondicionadoLogo from "../../../assets/arcondicionado.svg";
-import QuilmetragemLogo from "../../../assets/quilometragem.svg";
-import CombustivelLogo from "../../../assets/combustivel.svg";
-import FrenagemLogo from "../../../assets/frenagem.svg";
-import GasesLogo from "../../../assets/gases.svg";
-import MotorLogo from "../../../assets/motor.svg";
 import api from "../../../services";
 import { FeatureSensores } from "../sensores.interface";
 
@@ -21,14 +15,14 @@ const CardSensores: React.FC = () => {
   const [sensores, setSensores] = useState<FeatureSensores[]>([]);
 
   useEffect(() => {
-    api.get("/pages/sensores/5").then((response) => {
+    api.get("/pages/sensores/2").then((response) => {
       setSensores(response.data);
     });
   }, []);
 
   useEffect(() => {
     setInterval(() => {
-      api.get("/pages/sensores/5").then((response) => {
+      api.get("/pages/sensores/2").then((response) => {
         setSensores(response.data);
       });
     }, 5000);

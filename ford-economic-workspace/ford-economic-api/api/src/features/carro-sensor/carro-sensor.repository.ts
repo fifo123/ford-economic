@@ -7,6 +7,7 @@ import { CarroSensorDto } from './dto/carro-sensor.dto';
 import { ListarCarroSensores } from './interface/listar-carro-sensores.interface';
 import { FeatureSensores } from './interface/feature-sensores.interface';
 import { QueryFeatureSensores } from './interface/query-feature-sensores.interface';
+import { QueryFeatureEconomic } from './interface/query-feture-economic.interface';
 
 @EntityRepository(CarroSensorEntity)
 export class CarroSensorRepository extends Repository<CarroSensorEntity> {
@@ -138,6 +139,46 @@ export class CarroSensorRepository extends Repository<CarroSensorEntity> {
 				};
 			});
 			return featureSensores;
+		} catch (error) {}
+	}
+
+	async featureEconomic(idCarro: number) {
+		try {
+			const query = this.createQueryBuilder('CarroSensor');
+			query.innerJoin('CarroSensor.sensor', 'Sensor');
+			query.innerJoin('CarroSensor.carro', 'Carro');
+			query.leftJoin('CarroSensor.ocorrenciaSensor', 'OcorrenciaSensor');
+			query.select('Sensor.nome', 'nomeSensor');
+			query.addSelect('Sensor.icone', 'iconeSensor');
+			query.addSelect('OcorrenciaSensor.valor', 'valor');
+			query.addSelect('Carro.motor', 'motor');
+			query.addSelect('Carro.potencia', 'potencia');
+			query.addSelect('Carro.cargaBateria', 'cargaBateria');
+
+			query.where('Carro.id = :idCarro', {
+				idCarro: idCarro,
+			});
+
+			query.groupBy(
+				'Sensor.nome, Sensor.icone, OcorrenciaSensor.valor, Carro.motor, Carro.potencia, Carro.cargaBateria',
+			);
+
+			const sensores = await query.getRawMany<QueryFeatureEconomic>();
+
+			const featureEconomic: QueryFeatureEconomic[] = sensores.map(
+				sensor => {
+					return {
+						iconeSensor: sensor.iconeSensor,
+						nomeSensor: sensor.nomeSensor,
+						valor: sensor.valor,
+						motor: sensor.motor,
+						potencia: sensor.potencia,
+						cargaBateria: sensor.cargaBateria,
+					};
+				},
+			);
+
+			return featureEconomic;
 		} catch (error) {}
 	}
 }
