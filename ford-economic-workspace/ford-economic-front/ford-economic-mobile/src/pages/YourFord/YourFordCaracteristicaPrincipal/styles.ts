@@ -73,6 +73,7 @@ export const CaracteristicasDiv = styled.div`
   width: 90%;
   max-width: 350px;
   height: auto;
+  display: flex;
 
   margin: 0 auto;
 
@@ -89,19 +90,18 @@ export const CaracteristicaDiv = styled.div`
   margin-right: 15px;
 
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
   text-align: center;
   padding-top: 25px;
 `;
 
-export const ContainerCaracteristica = styled.div`
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-`;
+export const ContainerCaracteristica = styled.div``;
 
 export const ImgIcon = styled.img``;
 
 export const LblBotao = styled.div`
   margin-top: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 `;

@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   CaracteristicaDiv,
   CaracteristicasDiv,
@@ -16,15 +16,40 @@ import LabelTitulo from "../../../components/Shared/Titulo";
 import FotoCarro from "../../../assets/carro.jpg";
 
 import LogoAr from "../../../assets/arcondicionado.svg";
+import { useHistory } from "react-router-dom";
+import { CaracteristicaYourFord } from "../interface/your-ford-caracteristica.interface";
+import api from "../../../services";
 
 const YourFordSelecionarCPrincipal: React.FC = () => {
+  const history = useHistory();
+
+  const [caracteristicas, setCaracteristica] = useState<
+    CaracteristicaYourFord[]
+  >([{}]);
+
+  useEffect(() => {
+    api.get("/caracteristica").then((response) => {
+      console.log(response.data);
+
+      setCaracteristica(response.data.caracteristicas);
+    });
+  }, []);
+
+  function handleCaracteristica(e: any) {
+    const idImage: string = e.currentTarget.id;
+    const [id, image] = idImage.split(" ");
+    localStorage.setItem("principalId", id);
+    localStorage.setItem("principalIcone", image);
+    history.push("/your-ford-secundaria");
+  }
+
   return (
     <View>
       <YourFordSelecionarCPrincipalGrid>
         <FordHeader />
         <DivYourFordSelecaoCarro style={{ marginTop: "25px" }}>
           <YourFordImagemCarroSelecionado
-            src={FotoCarro}
+            src={localStorage.getItem("modeloImage") as string}
             width="300px"
             height="200px"
           />
@@ -34,36 +59,21 @@ const YourFordSelecionarCPrincipal: React.FC = () => {
           fontSize={"24px"}
         />
         <CaracteristicasDiv>
-          <CaracteristicaDiv>
-            <ContainerCaracteristica>
-              <ImgIcon src={LogoAr} width="40px" height="40px"></ImgIcon>
-              <LblBotao>Ar-Condicionado</LblBotao>
-            </ContainerCaracteristica>
-          </CaracteristicaDiv>
-          <CaracteristicaDiv>
-            <ContainerCaracteristica>
-              <ImgIcon src={LogoAr} width="40px" height="40px"></ImgIcon>
-              <LblBotao>Ar-Condicionado</LblBotao>
-            </ContainerCaracteristica>
-          </CaracteristicaDiv>
-          <CaracteristicaDiv>
-            <ContainerCaracteristica>
-              <ImgIcon src={LogoAr} width="40px" height="40px"></ImgIcon>
-              <LblBotao>Ar-Condicionado</LblBotao>
-            </ContainerCaracteristica>
-          </CaracteristicaDiv>
-          <CaracteristicaDiv>
-            <ContainerCaracteristica>
-              <ImgIcon src={LogoAr} width="40px" height="40px"></ImgIcon>
-              <LblBotao>Ar-Condicionado</LblBotao>
-            </ContainerCaracteristica>
-          </CaracteristicaDiv>
-          <CaracteristicaDiv>
-            <ContainerCaracteristica>
-              <ImgIcon src={LogoAr} width="40px" height="40px"></ImgIcon>
-              <LblBotao>Ar-Condicionado</LblBotao>
-            </ContainerCaracteristica>
-          </CaracteristicaDiv>
+          {caracteristicas.map((caracteristica) => (
+            <CaracteristicaDiv
+              onClick={handleCaracteristica}
+              id={caracteristica.id?.toString() + " " + caracteristica.icone}
+            >
+              <ContainerCaracteristica style={{ width: "103px" }}>
+                <ImgIcon
+                  src={`http://localhost:3000/get-image/?imagem=${caracteristica.icone}`}
+                  width="40px"
+                  height="40px"
+                ></ImgIcon>
+                <LblBotao>{caracteristica.nome}</LblBotao>
+              </ContainerCaracteristica>
+            </CaracteristicaDiv>
+          ))}
         </CaracteristicasDiv>
       </YourFordSelecionarCPrincipalGrid>
       <YourFordTexto style={{ marginTop: "25px", marginBottom: "20px" }}>

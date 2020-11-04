@@ -79,6 +79,7 @@ export const CaracteristicasDiv = styled.div`
   width: 90%;
   max-width: 350px;
   height: auto;
+  display: flex;
 
   margin: 0 auto;
 
@@ -110,4 +111,6 @@ export const ImgIcon = styled.img``;
 
 export const LblBotao = styled.div`
   margin-top: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 `;
