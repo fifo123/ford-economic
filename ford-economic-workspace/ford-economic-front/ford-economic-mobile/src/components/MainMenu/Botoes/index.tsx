@@ -46,7 +46,11 @@ const ContainerBotoes: React.FC = () => {
           </div>
           <LblBotao>Tips</LblBotao>
         </BotaoMenu>
-        <BotaoMenu gridArea={"BY"} style={{ paddingTop: "20px" }}>
+        <BotaoMenu
+          gridArea={"BY"}
+          onClick={() => history.push("/your-ford-menu")}
+          style={{ paddingTop: "20px" }}
+        >
           <LblBotao style={{ fontWeight: "bold" }}>YOUR</LblBotao>
           <div>
             <ImgIcon src={FordIcon} width="62px" height="24px" />
