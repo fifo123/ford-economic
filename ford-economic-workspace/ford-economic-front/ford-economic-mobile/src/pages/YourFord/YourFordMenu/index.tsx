@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   CaracteristicaPrincipal,
   CaracteristicaSecundaria,
@@ -24,9 +24,22 @@ import Motor from "../../../assets/motor.svg";
 import Urbano from "../../../assets/urbano.svg";
 import Viagem from "../../../assets/viagem.svg";
 import { useHistory } from "react-router-dom";
+import api from "../../../services";
+import { YourFord } from "../interface/your-ford.interface";
 
 const YourFordMenu: React.FC = () => {
   const history = useHistory();
+
+  const [yourFords, setYourFords] = useState<YourFord[]>([{}]);
+
+  useEffect(() => {
+    api.get("/your-ford").then((response) => {
+      console.log(response.data);
+
+      setYourFords(response.data.yourFords);
+    });
+  }, []);
+
   return (
     <View>
       <YourFordMenuGrid>
@@ -37,120 +50,54 @@ const YourFordMenu: React.FC = () => {
         </CriarYourFord>
         <ContainerYourFordMenu>
           <UlYourFordMenu>
-            <LiYourFordMenu>
-              <TituloCarro>Ford Terrytory</TituloCarro>
-              <DivCarroYourFord>
-                <ImagemCarroYourFord
-                  src={FotoCarro}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "24px",
-                  }}
-                ></ImagemCarroYourFord>
-              </DivCarroYourFord>
-              <ProfileYourFord>
-                <CaracteristicaPrincipal>
-                  {" "}
+            {yourFords.map((ford) => (
+              <LiYourFordMenu>
+                <TituloCarro>Ford {ford.nome}</TituloCarro>
+                <DivCarroYourFord>
                   <ImagemCarroYourFord
-                    src={ArCondicionado}
-                    style={{ width: "100%", height: "100%" }}
+                    src={`http://localhost:3000/get-image/?imagem=${ford.modelo?.imagem}`}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "24px",
+                    }}
                   ></ImagemCarroYourFord>
-                </CaracteristicaPrincipal>
-                <CaracteristicaSecundaria>
-                  {" "}
-                  <ImagemCarroYourFord src={Combustivel}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-                <CaracteristicaSecundaria style={{ marginLeft: "5.5px" }}>
-                  {" "}
-                  <ImagemCarroYourFord src={Motor}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-                <CaracteristicaSecundaria>
-                  {" "}
-                  <ImagemCarroYourFord src={Urbano}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-                <CaracteristicaSecundaria style={{ marginLeft: "5.5px" }}>
-                  {" "}
-                  <ImagemCarroYourFord src={Viagem}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-              </ProfileYourFord>
-            </LiYourFordMenu>
-            <LiYourFordMenu>
-              <TituloCarro>Ford Terrytory</TituloCarro>
-              <DivCarroYourFord>
-                <ImagemCarroYourFord
-                  src={FotoCarro}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "24px",
-                  }}
-                ></ImagemCarroYourFord>
-              </DivCarroYourFord>
-              <ProfileYourFord>
-                <CaracteristicaPrincipal>
-                  {" "}
-                  <ImagemCarroYourFord
-                    src={ArCondicionado}
-                    style={{ width: "100%", height: "100%" }}
-                  ></ImagemCarroYourFord>
-                </CaracteristicaPrincipal>
-                <CaracteristicaSecundaria>
-                  {" "}
-                  <ImagemCarroYourFord src={Combustivel}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-                <CaracteristicaSecundaria style={{ marginLeft: "5.5px" }}>
-                  {" "}
-                  <ImagemCarroYourFord src={Motor}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-                <CaracteristicaSecundaria>
-                  {" "}
-                  <ImagemCarroYourFord src={Urbano}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-                <CaracteristicaSecundaria style={{ marginLeft: "5.5px" }}>
-                  {" "}
-                  <ImagemCarroYourFord src={Viagem}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-              </ProfileYourFord>
-            </LiYourFordMenu>
-            <LiYourFordMenu>
-              <TituloCarro>Ford Terrytory</TituloCarro>
-              <DivCarroYourFord>
-                <ImagemCarroYourFord
-                  src={FotoCarro}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "24px",
-                  }}
-                ></ImagemCarroYourFord>
-              </DivCarroYourFord>
-              <ProfileYourFord>
-                <CaracteristicaPrincipal>
-                  {" "}
-                  <ImagemCarroYourFord
-                    src={ArCondicionado}
-                    style={{ width: "100%", height: "100%" }}
-                  ></ImagemCarroYourFord>
-                </CaracteristicaPrincipal>
-                <CaracteristicaSecundaria>
-                  {" "}
-                  <ImagemCarroYourFord src={Combustivel}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-                <CaracteristicaSecundaria style={{ marginLeft: "5.5px" }}>
-                  {" "}
-                  <ImagemCarroYourFord src={Motor}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-                <CaracteristicaSecundaria>
-                  {" "}
-                  <ImagemCarroYourFord src={Urbano}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-                <CaracteristicaSecundaria style={{ marginLeft: "5.5px" }}>
-                  {" "}
-                  <ImagemCarroYourFord src={Viagem}></ImagemCarroYourFord>
-                </CaracteristicaSecundaria>
-              </ProfileYourFord>
-            </LiYourFordMenu>
+                </DivCarroYourFord>
+                <ProfileYourFord>
+                  <CaracteristicaPrincipal>
+                    {" "}
+                    <ImagemCarroYourFord
+                      src={`http://localhost:3000/get-image/?imagem=${ford.caracteristicaPrincipal?.icone}`}
+                      style={{ width: "100%", height: "100%" }}
+                    ></ImagemCarroYourFord>
+                  </CaracteristicaPrincipal>
+                  <CaracteristicaSecundaria>
+                    {" "}
+                    <ImagemCarroYourFord
+                      src={`http://localhost:3000/get-image/?imagem=${ford.caracteristicaSecundaria1?.icone}`}
+                    ></ImagemCarroYourFord>
+                  </CaracteristicaSecundaria>
+                  <CaracteristicaSecundaria style={{ marginLeft: "5.5px" }}>
+                    {" "}
+                    <ImagemCarroYourFord
+                      src={`http://localhost:3000/get-image/?imagem=${ford.caracteristicaSecundaria2?.icone}`}
+                    ></ImagemCarroYourFord>
+                  </CaracteristicaSecundaria>
+                  <CaracteristicaSecundaria>
+                    {" "}
+                    <ImagemCarroYourFord
+                      src={`http://localhost:3000/get-image/?imagem=${ford.usoCarro1?.icone}`}
+                    ></ImagemCarroYourFord>
+                  </CaracteristicaSecundaria>
+                  <CaracteristicaSecundaria style={{ marginLeft: "5.5px" }}>
+                    {" "}
+                    <ImagemCarroYourFord
+                      src={`http://localhost:3000/get-image/?imagem=${ford.usoCarro2?.icone}`}
+                    ></ImagemCarroYourFord>
+                  </CaracteristicaSecundaria>
+                </ProfileYourFord>
+              </LiYourFordMenu>
+            ))}
           </UlYourFordMenu>
         </ContainerYourFordMenu>
       </YourFordMenuGrid>
