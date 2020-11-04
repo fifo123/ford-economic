@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
 import Login from "../pages/Login";
 import MainMenu from "../pages/MainMenu";
@@ -9,20 +9,33 @@ import Compare from "../pages/Compare";
 import Relatorios from "../pages/Relatorios";
 import Economic from "../pages/Economic";
 import Localizacao from "../pages/Localizacao";
-import SelecaoCarro from "../pages/SelecaoCarro";
+import SelecaoCarro from "../pages/SelecaoCarro"
+;
+const privateRoute = ({component: Component, ...rest}) => (
+  <Route
+     {rest}
+     render ={...props =>
+        isAuthenticated() ?(
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: from{props.location} }} />
+        )
+     }
+   />
+);
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <Route component={Login} path="/" exact />
-      <Route component={MainMenu} path="/main" exact />
-      <Route component={Sensores} path="/sensores" exact />
-      <Route component={Tips} path="/tips" exact />
-      <Route component={Compare} path="/compare" exact />
-      <Route component={Relatorios} path="/relatorios" exact />
-      <Route component={Economic} path="/economic" exact />
-      <Route component={Localizacao} path="/localizacao" exact />
-      <Route component={SelecaoCarro} path="/selecionar" exact />
+      <PrivateRoute component={MainMenu} path="/main" exact />
+      <PrivateRoute component={Sensores} path="/sensores" exact />
+      <PrivateRoute component={Tips} path="/tips" exact />
+      <PrivateRoute component={Compare} path="/compare" exact />
+      <PrivateRoute component={Relatorios} path="/relatorios" exact />
+      <PrivateRoute component={Economic} path="/economic" exact />
+      <PrivateRoute component={Localizacao} path="/localizacao" exact />
+      <PrivateRoute component={SelecaoCarro} path="/selecionar" exact />
     </BrowserRouter>
   );
 };

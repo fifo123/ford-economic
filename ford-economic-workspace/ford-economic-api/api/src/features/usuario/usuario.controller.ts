@@ -24,11 +24,15 @@ export class UsuarioController {
 
     @Patch('/atualizar/:id')
     async atualizarUsuario(@Param('id') id:number, @Body(ValidationPipe) data: AtualizarUsuarioDto){
-        return this.usuarioService.atualizarUsuario(id, data)
+        return this.usuarioService.atualizarUsuario(id, data);
     }
 
     @Delete('/deletar/:id')
     async deletarUsuario(@Param('id') id:number){
-        return this.usuarioService.deletarUsuario(id)
+        return this.usuarioService.deletarUsuario(id);
     }
+    @Get('/validar')
+    async validarUsuario(@Param('fordId', 'senha') fordId:string, senha:string){
+         return this.usuarioService.validarUsuario(fordId, senha);
+     }
 }

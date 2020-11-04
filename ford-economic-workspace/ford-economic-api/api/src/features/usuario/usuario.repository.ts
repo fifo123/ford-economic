@@ -72,4 +72,20 @@ export class UsuarioRepository extends Repository<UsuarioEntity> {
 			);
         }
     }
+    async validarUsuario(fordId:string, senha: string): Promise<UsuarioEntity>{
+        try {
+            const usuario = await this.findOne(fordId, senha);
+            if(!usuario){
+                throw new HttpException(
+                    'Não foi enontrado usuario com esse FordId ou Senha',
+                    HttpStatus.BAD_REQUEST,
+                );
+            }
+        }catch (error){
+            throw new HttpException(
+                'Erro na validação do Usuario',
+                HttpStatus.BAD_REQUEST,
+            );
+        }
+    } 
 }

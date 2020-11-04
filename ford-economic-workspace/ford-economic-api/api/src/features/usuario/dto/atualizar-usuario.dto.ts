@@ -68,6 +68,16 @@ export class AtualizarUsuarioDto {
     @IsOptional()
     genero?: string;
 
+    @IsString({message: 'O campo senha precisa ser uma string.'})
+    @Length(8,15, {message: 'Ocampo senha precisa ter um tamanho de 8 até 15'})
+    @IsOptional()
+    senha?: string;
+
+    @IsString({message: 'O campo fordId precisa ser uma string.'})
+    @Length(5,10, {message: 'O campo fordId precisa ter um tamanho de 5 até 10'})
+    @IsOptional()
+    fordId?: string;
+
     @IsNumber({allowInfinity: false, allowNaN: false, maxDecimalPlaces:0}, {message:'O campo grupoFamiliar precisa ser um numero.'})
     @IsOptional()
     grupoFamiliar?: GrupoFamiliarEntity;

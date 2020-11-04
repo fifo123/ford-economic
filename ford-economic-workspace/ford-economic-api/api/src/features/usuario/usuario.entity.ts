@@ -107,6 +107,13 @@ export class UsuarioEntity extends BaseEntity {
 		length: 20,
 	})
 	genero: string;
+	
+	@Column({
+		type: 'varchar',
+		unique: true,
+		length: 8,
+	})
+	senha: string;
 
 	@ManyToOne(
 		() => GrupoFamiliarEntity,

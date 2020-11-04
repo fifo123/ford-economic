@@ -28,4 +28,8 @@ export class UsuarioService {
     async deletarUsuario(id: number): Promise<UsuarioEntity>{
         return this.usuarioRepository.deletarUsuario(id);
     }
+    async validarUsuario(fordId: string, senha: string): Promise<UsuarioEntity>{
+        return this.usuarioRepository.validarUsuario(fordId,senha);
+    }
+    
 }
