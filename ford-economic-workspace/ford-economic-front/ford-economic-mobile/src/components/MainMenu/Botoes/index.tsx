@@ -22,7 +22,7 @@ const ContainerBotoes: React.FC = () => {
   return (
     <>
       <ContainerBotoesMenu>
-        <BotaoMenu gridArea={"BE"}>
+        <BotaoMenu gridArea={"BE"} onClick={() => history.push("/economic")}>
           <ImgIcon src={EconomicIcon} />
           <LblBotao>Economic</LblBotao>
         </BotaoMenu>
@@ -32,7 +32,7 @@ const ContainerBotoes: React.FC = () => {
           <LblBotao>Sensores</LblBotao>
         </BotaoMenu>
 
-        <BotaoMenu gridArea={"BC"}>
+        <BotaoMenu gridArea={"BC"} onClick={() => history.push("/compare")}>
           <ImgIcon src={CompareseIcon} />
           <LblBotao>Compare-se</LblBotao>
         </BotaoMenu>
@@ -40,7 +40,7 @@ const ContainerBotoes: React.FC = () => {
           <ImgIcon src={RelatoriosIcon} />
           <LblBotao>Relatórios</LblBotao>
         </BotaoMenu>
-        <BotaoMenu gridArea={"BT"}>
+        <BotaoMenu gridArea={"BT"} onClick={() => history.push("/tips")}>
           <div>
             <ImgIcon src={TipsIcon} />
           </div>

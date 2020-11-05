@@ -16,19 +16,9 @@ const EconomicList: React.FC = () => {
   const [economic, setEconomic] = useState<FeatureEconomic[]>([]);
 
   useEffect(() => {
-    api.get("/pages/economic/2").then((response) => {
-      const sensoresDisponiveis = response.data.filter((valor: any) => {
-        if (valor != null) {
-          return valor;
-        }
-      });
-      setEconomic(sensoresDisponiveis);
-    });
-  }, []);
-
-  useEffect(() => {
-    setInterval(() => {
-      api.get("/pages/economic/2").then((response) => {
+    api
+      .get(`/pages/economic/${localStorage.getItem("carroId")}`)
+      .then((response) => {
         const sensoresDisponiveis = response.data.filter((valor: any) => {
           if (valor != null) {
             return valor;
@@ -36,6 +26,20 @@ const EconomicList: React.FC = () => {
         });
         setEconomic(sensoresDisponiveis);
       });
+  }, []);
+
+  useEffect(() => {
+    setInterval(() => {
+      api
+        .get(`/pages/economic/${localStorage.getItem("carroId")}`)
+        .then((response) => {
+          const sensoresDisponiveis = response.data.filter((valor: any) => {
+            if (valor != null) {
+              return valor;
+            }
+          });
+          setEconomic(sensoresDisponiveis);
+        });
     }, 5000);
   }, []);
 

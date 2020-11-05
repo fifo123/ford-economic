@@ -20,9 +20,12 @@ const CorpoCompare: React.FC = () => {
   const [compare, setCompare] = useState<FeatureCompare>([]);
 
   useEffect(() => {
-    api.get("/pages/compare/2").then((response) => {
-      setCompare(response.data);
-    });
+    api
+      .get(`/pages/compare/${localStorage.getItem("carroId")}`)
+      .then((response) => {
+        setCompare(response.data);
+        console.log(response.data);
+      });
   }, []);
 
   const [index, setIndex] = useState<number>(0);
@@ -39,7 +42,7 @@ const CorpoCompare: React.FC = () => {
           nomeSensor={compare.nome}
           porcentagem={compare.porcentagem}
           carro={compare.carro}
-          imagem={compare.imagem}
+          imagem={`http://localhost:3000/get-image/?imagem=${compare.imagem}`}
         />
         <RightArrowImage src={RightArrow} width="30px" height="50px" />
       </GridSelectCompare>

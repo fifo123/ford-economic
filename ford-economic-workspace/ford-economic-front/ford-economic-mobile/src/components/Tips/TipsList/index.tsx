@@ -14,9 +14,11 @@ const TipsList: React.FC = () => {
   const [tips, setTips] = useState<string[]>([]);
 
   useEffect(() => {
-    api.get("/pages/tips/2").then((response) => {
-      setTips(response.data);
-    });
+    api
+      .get(`/pages/tips/${localStorage.getItem("carroId")}`)
+      .then((response) => {
+        setTips(response.data);
+      });
   }, []);
 
   return (
