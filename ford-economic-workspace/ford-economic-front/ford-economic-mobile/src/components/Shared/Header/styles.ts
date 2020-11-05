@@ -85,7 +85,7 @@ export const SideBarDiv = styled.div`
   right: 0;
   bottom: 0;
   background-color: rgba(0, 52, 120, 1);
-  z-index: 3;
+  z-index: 4;
   transition: width 1s;
 `;
 

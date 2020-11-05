@@ -56,33 +56,45 @@ const CorpoRelatorio: React.FC = () => {
   const [geral, setGeral] = useState<boolean>(true);
 
   useEffect(() => {
-    api.get<FeatureSensores[]>("/pages/sensores/5").then((response) => {
-      setSensores(response.data);
-      setSize(response.data.length + 2);
-      console.log(size);
-      console.log(response.data);
-    });
+    api
+      .get<FeatureSensores[]>(
+        `/pages/sensores/${localStorage.getItem("carroId")}`
+      )
+      .then((response) => {
+        setSensores(response.data);
+        setSize(response.data.length + 2);
+        console.log(size);
+        console.log(response.data);
+      });
   }, []);
 
   useEffect(() => {
-    api.get<any[]>("/pages/relatorios/5").then((response) => {
-      setDataGoogle({ data: response.data, type: "PieChart" });
-      console.log(response.data);
-    });
+    api
+      .get<any[]>(`/pages/relatorios/${localStorage.getItem("carroId")}`)
+      .then((response) => {
+        setDataGoogle({ data: response.data, type: "PieChart" });
+        console.log(response.data);
+      });
   }, []);
 
   useEffect(() => {
-    api.get<any[]>("/pages/relatorios/5").then((response) => {
-      setDataGoogle({ data: response.data, type: "PieChart" });
-      console.log(response.data);
-    });
+    api
+      .get<any[]>(`/pages/relatorios/${localStorage.getItem("carroId")}`)
+      .then((response) => {
+        setDataGoogle({ data: response.data, type: "PieChart" });
+        console.log(response.data);
+      });
   }, [geral]);
 
   useEffect(() => {
-    api.get<any[]>(`/pages/relatorios/5/${relatorio}`).then((response) => {
-      setDataGoogle({ data: response.data, type: "Bar" });
-      console.log(response.data);
-    });
+    api
+      .get<any[]>(
+        `/pages/relatorios/${localStorage.getItem("carroId")}/${relatorio}`
+      )
+      .then((response) => {
+        setDataGoogle({ data: response.data, type: "Bar" });
+        console.log(response.data);
+      });
   }, [relatorio]);
 
   const [selected, setSelected] = useState<{ id: string; nome: string }>({

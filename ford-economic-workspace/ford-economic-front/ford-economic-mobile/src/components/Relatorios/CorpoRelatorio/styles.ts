@@ -8,7 +8,7 @@ export const ContainerSeletor = styled.div`
   width: 100%;
   height: 41px;
 
-  z-index: 3;
+  z-index: 2;
 
   margin-top: 20px;
   overflow-y: hidden;
