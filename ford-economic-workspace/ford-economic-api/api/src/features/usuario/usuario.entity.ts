@@ -33,6 +33,14 @@ export class UsuarioEntity extends BaseEntity {
 	email: string;
 
 	@Column({
+		type: 'varchar',
+		length: 100,
+		default: '123',
+		nullable: true,
+	})
+	senha?: string;
+
+	@Column({
 		type: 'date',
 		nullable: false,
 	})
