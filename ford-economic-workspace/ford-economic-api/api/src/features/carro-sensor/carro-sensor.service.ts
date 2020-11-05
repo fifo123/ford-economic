@@ -44,6 +44,17 @@ export class CarroSensorService {
 		return this.carroSensorRepository.featureSensores(idCarro);
 	}
 
+	async featureRelatorios(idCarro: number) {
+		return this.carroSensorRepository.featureRelatorios(idCarro);
+	}
+
+	async featureRelatoriosSensorMes(idCarro: number, idSensor: number) {
+		return this.carroSensorRepository.featureRelatoriosSensorMes(
+			idCarro,
+			idSensor,
+		);
+	}
+
 	async featureEconomic(idCarro: number) {
 		const sensorValues: Promise<QueryFeatureEconomic[]> = this.carroSensorRepository.featureEconomic(
 			idCarro,
