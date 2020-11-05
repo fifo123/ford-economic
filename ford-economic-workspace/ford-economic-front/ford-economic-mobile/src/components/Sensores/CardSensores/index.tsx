@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ContainerSensores,
   DivSensoresNome,
@@ -15,14 +15,14 @@ const CardSensores: React.FC = () => {
   const [sensores, setSensores] = useState<FeatureSensores[]>([]);
 
   useEffect(() => {
-    api.get("/pages/sensores/5").then((response) => {
+    api.get("/pages/sensores/2").then((response) => {
       setSensores(response.data);
     });
   }, []);
 
   useEffect(() => {
     setInterval(() => {
-      api.get("/pages/sensores/5").then((response) => {
+      api.get("/pages/sensores/2").then((response) => {
         setSensores(response.data);
       });
     }, 5000);

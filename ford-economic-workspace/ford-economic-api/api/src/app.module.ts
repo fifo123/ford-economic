@@ -15,6 +15,7 @@ import { seed } from './seeds';
 import { UsoCarroModule } from './features/your-ford/uso-carro/uso-carro.module';
 import { ModeloModule } from './features/your-ford/modelo/modelo.module';
 import { PageSensoresModule } from './features/pages/page-sensores/page-sensores.module';
+import { PageEconomicModule } from './features/pages/page-economic/page-economic.module';
 
 @Module({
 	imports: [
@@ -31,6 +32,7 @@ import { PageSensoresModule } from './features/pages/page-sensores/page-sensores
 		UsoCarroModule,
 		YourFordModule,
 		PageSensoresModule,
+		PageEconomicModule,
 	],
 	controllers: [AppController],
 })

@@ -7,9 +7,7 @@ import {
   DetailTitleLabel,
 } from "./styles";
 
-const EconomicInnerBox: React.FC<{ title: string; detail: string }> = (
-  props
-) => {
+const EconomicInnerBox: React.FC<{ title: any; detail: any }> = (props) => {
   return (
     <>
       <DetailLabelConatiner>
