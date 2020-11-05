@@ -42,9 +42,6 @@ const DetalhesCompare: React.FC<{
               usuários do {props.carro}
             </CompareText>
             <CompareText>
-              Informação adicional: <b>ver em breve</b>
-            </CompareText>
-            <CompareText>
               Nesse quesito você está{" "}
               <b style={{ color: getUtilizacaoEstado(props.porcentagem)[2] }}>
                 {" "}
