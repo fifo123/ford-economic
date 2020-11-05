@@ -30,7 +30,7 @@ const CorpoCompare: React.FC = () => {
 
   return (
     <>
-      <LabelAvaliacaoTexto>Você rodou mais que a média</LabelAvaliacaoTexto>
+      <LabelAvaliacaoTexto>Você rodou menos que a média</LabelAvaliacaoTexto>
       <AvaliacaoImagem src={Check} width="75px" height="75px" />
       <LabelDesempenho> Seu desempenho </LabelDesempenho>
       <GridSelectCompare>

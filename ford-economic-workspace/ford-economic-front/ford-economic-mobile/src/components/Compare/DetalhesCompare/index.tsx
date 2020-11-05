@@ -19,7 +19,7 @@ const DetalhesCompare: React.FC<{
     if (porcentagem <= 0) {
       return [porcentagem, "% a mais", "red", "abaixo"];
     } else {
-      return [porcentagem, "% a menos", "green", "acima"];
+      return [porcentagem, "% a menos", "green", "mais íntegro"];
     }
   }
 
@@ -37,8 +37,7 @@ const DetalhesCompare: React.FC<{
           </GridCompareSymbols>
           <GridCompareText>
             <CompareText>
-              Você rodou mais que{" "}
-              <b>{getUtilizacaoEstado(props.porcentagem)[0]}</b>
+              Você rodou <b>{getUtilizacaoEstado(props.porcentagem)[0]}</b>
               {getUtilizacaoEstado(props.porcentagem)[1]} que a média dos
               usuários do {props.carro}
             </CompareText>
@@ -49,7 +48,7 @@ const DetalhesCompare: React.FC<{
               Nesse quesito você está{" "}
               <b style={{ color: getUtilizacaoEstado(props.porcentagem)[2] }}>
                 {" "}
-                {getUtilizacaoEstado(props.porcentagem)[3]} da média{" "}
+                {getUtilizacaoEstado(props.porcentagem)[3]} que a média{" "}
               </b>
             </CompareText>
           </GridCompareText>
