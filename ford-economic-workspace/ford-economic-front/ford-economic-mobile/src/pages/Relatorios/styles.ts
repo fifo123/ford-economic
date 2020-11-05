@@ -7,13 +7,15 @@ import styled from "styled-components";
 export const RelatoriosGrid = styled.div`
   display: grid;
 
-  grid-template-columns: auto;
-  grid-template-rows: 75px 80px auto;
+  grid-template-columns: 100%;
+  grid-template-rows: 75px 80px 41px 200px 54px;
 
   grid-template-areas:
     "HD"
     "LB"
-    "RL";
+    "SS"
+    "GC"
+    "SP";
 
   height: 100vh;
 
