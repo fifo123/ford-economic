@@ -76,6 +76,11 @@ export class CarroController {
 		return this.carroService.listarCarro(id);
 	}
 
+	@Get('listar-grupo/:id')
+	async listarCarroByGrupoFamiliar(@Param('id') id: number) {
+		return this.carroService.listarCarroByGrupoFamiliar(id);
+	}
+
 	@UseInterceptors(
 		FileInterceptor('imagem', {
 			storage: diskStorage({

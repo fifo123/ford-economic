@@ -25,6 +25,10 @@ export class CarroService {
 		return this.carroRepository.listarCarro(id);
 	}
 
+	async listarCarroByGrupoFamiliar(id: number): Promise<CarroEntity[]> {
+		return this.carroRepository.listarCarroByGrupoFamiliar(id);
+	}
+
 	async atualizarCarro(
 		id: number,
 		data: AtualizarCarroDto,

@@ -50,6 +50,26 @@ export class CarroRepository extends Repository<CarroEntity> {
 			);
 		}
 	}
+
+	async listarCarroByGrupoFamiliar(id: number): Promise<CarroEntity[]> {
+		try {
+			const query = this.createQueryBuilder('Carro');
+			query.innerJoinAndSelect('Carro.usuario', 'Usuario');
+			query.innerJoin('Usuario.grupoFamiliar', 'GrupoFamiliar');
+			query.where('GrupoFamiliar.id = :id', {
+				id,
+			});
+			query.leftJoinAndSelect('Carro.localizacao', 'Localizacao');
+			query.orderBy('Localizacao.criado', 'DESC');
+			return query.getMany();
+		} catch (error) {
+			throw new HttpException(
+				'Erro ao listar carro',
+				HttpStatus.BAD_REQUEST,
+			);
+		}
+	}
+
 	async atualizarCarro(
 		id: number,
 		data: AtualizarCarroDto,
