@@ -3,7 +3,6 @@ import { CarroController } from '../carro/carro.controller';
 import { CarroEntity } from '../carro/carro.entity';
 import { CarroRepository } from '../carro/carro.repository';
 import { CarroService } from '../carro/carro.service';
-import { SensorFrenagemDisplay } from '../ocorrencia-sensor/interface/sensor-frenagem-display.interface';
 import { CarroSensorEntity } from './carro-sensor.entity';
 import { CarroSensorRepository } from './carro-sensor.repository';
 import { AtualizarCarroSensorDto } from './dto/atualizar-carro-sensor.dto';
