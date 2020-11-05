@@ -36,7 +36,7 @@ const ContainerBotoes: React.FC = () => {
           <ImgIcon src={CompareseIcon} />
           <LblBotao>Compare-se</LblBotao>
         </BotaoMenu>
-        <BotaoMenu gridArea={"BR"}>
+        <BotaoMenu gridArea={"BR"} onClick={() => history.push("/relatorios")}>
           <ImgIcon src={RelatoriosIcon} />
           <LblBotao>Relatórios</LblBotao>
         </BotaoMenu>
