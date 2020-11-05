@@ -82,7 +82,11 @@ const FordHeader: React.FC = () => {
                   <TextoOpcao>Profile</TextoOpcao>
                 </ContainerOpcoes>
               </LiBotoes>
-              <LiBotoes>
+              <LiBotoes
+                onClick={() => {
+                  history.push("/selecionar");
+                }}
+              >
                 <ContainerOpcoes>
                   <img src={SelecioneSvg} width="30px" height="40px" />
                   <TextoOpcao>Selecione seu carro</TextoOpcao>
@@ -116,7 +120,17 @@ const FordHeader: React.FC = () => {
                   <TextoOpcao>Configurações</TextoOpcao>
                 </ContainerOpcoes>
               </LiBotoes>
-              <LiBotoes>
+              <LiBotoes
+                onClick={() => {
+                  localStorage.removeItem("carroId");
+                  localStorage.removeItem("idUsuario");
+                  localStorage.removeItem("idGrupoFamiliar");
+                  localStorage.removeItem("nomeUsuario");
+                  localStorage.removeItem("carroId");
+                  localStorage.removeItem("imagemCarro");
+                  history.push("/");
+                }}
+              >
                 <ContainerOpcoes>
                   <img src={SairSvg} width="30px" height="30px" />
                   <TextoOpcao>Sair</TextoOpcao>
