@@ -17,6 +17,10 @@ export class YourFordService {
 		return this.yourFordRepository.listarYourFords();
 	}
 
+	async listarYourFordsDoUsuario(id: number): Promise<ListarYourFords> {
+		return this.yourFordRepository.listarYourFordsDoUsuario(id);
+	}
+
 	async listarYourFord(id: number): Promise<YourFordEntity> {
 		return this.yourFordRepository.listarYourFord(id);
 	}

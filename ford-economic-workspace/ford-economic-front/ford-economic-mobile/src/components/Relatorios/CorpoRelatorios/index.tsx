@@ -1,13 +1,13 @@
 import React from "react";
 
-import RelatoriosList from "../RelatoriosList";
 import { LabelRelatorios } from "./styles";
+import CorpoRelatorio from "../CorpoRelatorio";
 
 const CorpoRelatorios: React.FC = () => {
   return (
     <>
       <LabelRelatorios>Relatórios</LabelRelatorios>
-      <RelatoriosList />
+      <CorpoRelatorio />
     </>
   );
 };

@@ -11,6 +11,7 @@ import {
 import { LocalizacaoCarroEntity } from '../localizacao-carro/localizacao-carro.entity';
 import { UsuarioEntity } from '../usuario/usuario.entity';
 import { CarroSensorEntity } from '../carro-sensor/carro-sensor.entity';
+import { TipsEntity } from '../tips/tips.entity';
 
 @Entity({
 	name: 'Carro',
@@ -91,6 +92,15 @@ export class CarroEntity extends BaseEntity {
 		carroSensor => carroSensor.carro,
 	)
 	carroSensor: CarroSensorEntity[];
+
+	@OneToMany(
+		type => TipsEntity,
+		tips => tips.carro,
+		{
+			cascade: true,
+		},
+	)
+	tips: TipsEntity[];
 
 	@UpdateDateColumn()
 	atualizado: Date;

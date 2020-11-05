@@ -33,11 +33,13 @@ const YourFordMenu: React.FC = () => {
   const [yourFords, setYourFords] = useState<YourFord[]>([{}]);
 
   useEffect(() => {
-    api.get("/your-ford").then((response) => {
-      console.log(response.data);
+    api
+      .get(`/your-ford/listar-usuario/${localStorage.getItem("idUsuario")}`)
+      .then((response) => {
+        console.log(response.data);
 
-      setYourFords(response.data.yourFords);
-    });
+        setYourFords(response.data.yourFords);
+      });
   }, []);
 
   return (

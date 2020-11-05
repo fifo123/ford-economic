@@ -32,5 +32,7 @@ export default createGlobalStyle`
         --red: #FF4141;
         --yellow: #E7E984;
         --orange: #EF7531;
+        --gray: #f5f5f5;
+        --darkgray:#dbdbdb
     }
 `;

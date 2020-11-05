@@ -1,6 +1,8 @@
 import React from "react";
 
-import Lamp from "./../../../assets/lamp.svg";
+import LampWhite from "./../../../assets/lamp_white.svg";
+import LampBlue from "./../../../assets/lamp_blue.svg";
+
 import {
   ContainerSymbols,
   GridSymbols,
@@ -8,11 +10,11 @@ import {
   SymbolText,
 } from "./styles";
 
-const SymbolTips: React.FC = () => {
+const SymbolTips: React.FC<{ lampColor: Boolean }> = (props) => {
   return (
     <ContainerSymbols>
       <GridSymbols>
-        <SymbolImage src={Lamp} />
+        <SymbolImage src={props.lampColor ? LampBlue : LampWhite} />
         <SymbolText> Dica </SymbolText>
       </GridSymbols>
     </ContainerSymbols>

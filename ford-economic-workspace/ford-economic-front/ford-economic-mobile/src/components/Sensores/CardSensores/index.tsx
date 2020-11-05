@@ -15,16 +15,20 @@ const CardSensores: React.FC = () => {
   const [sensores, setSensores] = useState<FeatureSensores[]>([]);
 
   useEffect(() => {
-    api.get("/pages/sensores/2").then((response) => {
-      setSensores(response.data);
-    });
+    api
+      .get(`/pages/sensores/${localStorage.getItem("carroId")}`)
+      .then((response) => {
+        setSensores(response.data);
+      });
   }, []);
 
   useEffect(() => {
     setInterval(() => {
-      api.get("/pages/sensores/2").then((response) => {
-        setSensores(response.data);
-      });
+      api
+        .get(`/pages/sensores/${localStorage.getItem("carroId")}`)
+        .then((response) => {
+          setSensores(response.data);
+        });
     }, 5000);
   }, []);
 

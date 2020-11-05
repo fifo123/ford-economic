@@ -26,6 +26,11 @@ export class YourFordController {
 		return this.yourFordService.listarYourFords();
 	}
 
+	@Get('listar-usuario/:id')
+	async listarYourFordsDoUsuario(@Param('id') id: number) {
+		return this.yourFordService.listarYourFordsDoUsuario(id);
+	}
+
 	@Get('/:id')
 	async listarYourFord(@Param('id') id: number) {
 		return this.yourFordService.listarYourFord(id);
