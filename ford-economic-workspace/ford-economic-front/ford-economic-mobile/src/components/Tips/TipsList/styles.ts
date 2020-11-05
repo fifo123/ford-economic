@@ -12,25 +12,12 @@ export const ContainerTipsList = styled.div`
   width: 338px;
 `;
 
-//L1 e L2 = dica com fundo branco; D1 e D2 = dica com fundo escuro
-export const GridListTips = styled.div`
-  display: grid;
+interface Props {
+  fundoCor: string;
+  fontCor: string;
+}
 
-  grid-template-columns: auto;
-  grid-template-rows: 117px 117px 117px auto;
-
-  grid-template-areas:
-    "L1"
-    "D1"
-    "L2"
-    "D2";
-
-  width: 100%;
-`;
-
-export const LightBackgroundTip = styled.div`
-  grid-area: L1, L2;
-
+export const BackgroundTip = styled.li<Props>`
   display: flex;
 
   flex-direction: column;
@@ -38,30 +25,16 @@ export const LightBackgroundTip = styled.div`
 
   height: 90px;
   border-radius: 12px;
+
+  margin-top: 10px;
 
   font-size: 36px;
   color: var(--darkblue);
 
   padding-bottom: 27px;
 
-  color: var(--darkblue);
-  background-color: var(--white);
-`;
-
-export const DarkBackgroundTip = styled.div`
-  grid-area: D1, D2;
-
-  display: flex;
-
-  flex-direction: column;
-  align-items: center;
-  background-color: red;
-
-  height: 90px;
-  border-radius: 12px;
-
-  color: var(--white);
-  background-color: var(--darkblue);
+  color: ${(p) => p.fontCor};
+  background-color: ${(p) => p.fundoCor};
 `;
 
 export const GridInnerItem = styled.div`
@@ -88,8 +61,8 @@ export const TextContainer = styled.label`
   height: 64px;
   line-height: 16px;
 
-  padding-top: 12px;
-  padding-bottom: 12px;
+  margin-top: 5px;
+  margin-right: 5px;
 
   font-style: normal;
   font-size: 13px;

@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { SensorEntity } from 'src/features/sensor/sensor.entity';
+import { TipsEntity } from 'src/features/tips/tips.entity';
 import { CaracteristicaEntity } from 'src/features/your-ford/caracteristica/caracteristica.entity';
 import { ModeloEntity } from 'src/features/your-ford/modelo/modelo.entity';
 import { UsoCarroEntity } from 'src/features/your-ford/uso-carro/uso-carro.entity';
@@ -8,6 +9,7 @@ import { valoresCaracteristicas } from './caracteristicas.seed';
 import { valoresModelos } from './modelos.seed';
 import { Seed } from './seeds.entity';
 import { valoresSensores } from './sensores.seed';
+import { valoresTips } from './tips.seed';
 import { valoresUsosCarro } from './usos-carro.seed';
 
 export async function seed() {
@@ -73,6 +75,20 @@ export async function seed() {
 			logger.verbose('Adicionando a Seed de Usos do Carro');
 		} else {
 			logger.debug('Não é necessário criar a Seed de Usos do Carro');
+		}
+
+		const tipsSeed = await seedRepository.find({
+			where: { seed: 'tips' },
+		});
+		if (tipsSeed.length == 0) {
+			const tipsRepository = getRepository<TipsEntity>('Tips');
+			valoresTips.map(async valor => {
+				await tipsRepository.save(valor);
+			});
+			await seedRepository.save({ seed: 'tips' });
+			logger.verbose('Adicionando a Seed de Tips');
+		} else {
+			logger.debug('Não é necessário criar a Seed de Tips');
 		}
 	} catch (error) {
 		throw error;

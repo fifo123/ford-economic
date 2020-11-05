@@ -17,6 +17,8 @@ import { ModeloModule } from './features/your-ford/modelo/modelo.module';
 import { PageSensoresModule } from './features/pages/page-sensores/page-sensores.module';
 import { PageEconomicModule } from './features/pages/page-economic/page-economic.module';
 import { PageRelatoriosModule } from './features/pages/page-relatorios/page-relatorios.module';
+import { PageTipsModule } from './features/pages/page-tips/page-tips.module';
+import { TipsModule } from './features/tips/tips.module';
 
 @Module({
 	imports: [
@@ -35,6 +37,8 @@ import { PageRelatoriosModule } from './features/pages/page-relatorios/page-rela
 		PageSensoresModule,
 		PageEconomicModule,
 		PageRelatoriosModule,
+		TipsModule,
+		PageTipsModule,
 	],
 	controllers: [AppController],
 })
