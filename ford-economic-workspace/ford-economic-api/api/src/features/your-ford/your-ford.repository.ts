@@ -31,6 +31,9 @@ export class YourFordRepository extends Repository<YourFordEntity> {
 					'modelo',
 					'usuario',
 				],
+				order: {
+					criado: 'DESC',
+				},
 			});
 			return { total, yourFords };
 		} catch (error) {

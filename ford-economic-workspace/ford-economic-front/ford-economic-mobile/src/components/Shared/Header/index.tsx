@@ -55,7 +55,12 @@ const FordHeader: React.FC = () => {
       <Container>
         <GridHeader>
           <LogoHeader>
-            <img src={FordLogo} width="121px" height="48px" />
+            <img
+              src={FordLogo}
+              width="121px"
+              onClick={handleMenu}
+              height="48px"
+            />
           </LogoHeader>
           <TextHeader> Economic </TextHeader>
           <MenuHeader>
