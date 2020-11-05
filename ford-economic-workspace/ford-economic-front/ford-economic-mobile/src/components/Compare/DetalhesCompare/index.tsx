@@ -11,16 +11,15 @@ import {
 
 const DetalhesCompare: React.FC<{
   nomeSensor: string;
-  economia: number;
   porcentagem: number;
   carro: string;
   imagem: string;
 }> = (props) => {
   function getUtilizacaoEstado(porcentagem: number) {
-    if (porcentagem >= 0) {
+    if (porcentagem <= 0) {
       return [porcentagem, "% a mais", "red", "abaixo"];
     } else {
-      return [porcentagem * -1, "% a menos", "green", "acima"];
+      return [porcentagem, "% a menos", "green", "acima"];
     }
   }
 
@@ -38,7 +37,7 @@ const DetalhesCompare: React.FC<{
           </GridCompareSymbols>
           <GridCompareText>
             <CompareText>
-              Utilizou o ar-condicionado{" "}
+              Você rodou mais que{" "}
               <b>{getUtilizacaoEstado(props.porcentagem)[0]}</b>
               {getUtilizacaoEstado(props.porcentagem)[1]} que a média dos
               usuários do {props.carro}

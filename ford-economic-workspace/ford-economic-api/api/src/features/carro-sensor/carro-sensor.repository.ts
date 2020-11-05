@@ -311,6 +311,10 @@ export class CarroSensorRepository extends Repository<CarroSensorEntity> {
 			query.andWhere('Carro.id <> :idCarro', {
 				idCarro: idCarro,
 			});
+			query.andWhere('Sensor.nome ILIKE :nomeSensor', {
+				nomeSensor: 'Uso Geral',
+			});
+			query.orderBy('OcorrenciaSensor.criado', 'DESC');
 
 			const sensores = await query.getRawMany<{
 				iconeSensor: string;
@@ -322,23 +326,55 @@ export class CarroSensorRepository extends Repository<CarroSensorEntity> {
 				cargaBateria: string;
 			}>();
 
-			let sensorId = [sensores[0].idCarro];
-			console.log(sensorId);
+			let ultimosSensores = [sensores[0]];
+			let idSensores = [sensores[0].idCarro];
 
 			const ids = sensores.map(sensor => {
-				if (sensorId.indexOf(sensor.idCarro) == -1) {
-					sensorId.push(sensor.idCarro);
+				if (idSensores.indexOf(sensor.idCarro) == -1) {
+					ultimosSensores.push(sensor);
+					idSensores.push(sensor.idCarro);
 				}
 			});
-			console.log(sensorId);
 
-			// console.log(sensores);
+			console.log('Esse cara aqui ->', ultimosSensores);
+			const query2 = this.createQueryBuilder('CarroSensor');
+			query2.innerJoin('CarroSensor.sensor', 'Sensor');
+			query2.innerJoin('CarroSensor.carro', 'Carro');
+			query2.leftJoin('CarroSensor.ocorrenciaSensor', 'OcorrenciaSensor');
+			query2.select('Sensor.nome', 'nomeSensor');
+			query2.addSelect('Carro.id', 'idCarro');
+			query2.addSelect('Carro.modelo', 'modelo');
+			query2.addSelect('Sensor.icone', 'iconeSensor');
+			query2.addSelect('OcorrenciaSensor.valor', 'valor');
 
-			const featureCompare = sensores.map(sensor => {
-				return sensor.valor[Object.keys(sensor.valor)[1]];
+			query2.andWhere('Carro.id = :idCarro', {
+				idCarro: idCarro,
+			});
+			query2.andWhere('Sensor.nome ILIKE :nomeSensor', {
+				nomeSensor: 'Uso Geral',
+			});
+			query2.orderBy('OcorrenciaSensor.criado', 'DESC');
+
+			const carroPesquisado = await query2.getRawOne();
+			console.log(carroPesquisado);
+
+			const total = idSensores.length + 1;
+
+			const acima = ultimosSensores.map(sensor => {
+				if (sensor.valor.kmTotal >= carroPesquisado.valor.kmTotal) {
+					return sensor;
+				}
 			});
 
-			return featureCompare;
+			console.log('Acima: ', acima.length);
+			console.log('Total: ', total);
+
+			return {
+				porcentagem: (acima.length * 100) / total,
+				nome: 'Uso Geral',
+				carro: modeloCarro,
+				imagem: acima[0].iconeSensor,
+			};
 		} catch (error) {}
 	}
 }
