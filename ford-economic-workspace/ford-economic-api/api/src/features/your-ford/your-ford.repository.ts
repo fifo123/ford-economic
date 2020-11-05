@@ -44,6 +44,36 @@ export class YourFordRepository extends Repository<YourFordEntity> {
 		}
 	}
 
+	async listarYourFordsDoUsuario(id: number): Promise<ListarYourFords> {
+		try {
+			const [yourFords, total] = await this.findAndCount({
+				relations: [
+					'caracteristicaPrincipal',
+					'caracteristicaSecundaria1',
+					'caracteristicaSecundaria2',
+					'usoCarro1',
+					'usoCarro2',
+					'modelo',
+					'usuario',
+				],
+				order: {
+					criado: 'DESC',
+				},
+				where: {
+					usuario: {
+						id,
+					},
+				},
+			});
+			return { total, yourFords };
+		} catch (error) {
+			throw new HttpException(
+				'Erro ao listar Your Fords',
+				HttpStatus.BAD_REQUEST,
+			);
+		}
+	}
+
 	async listarYourFord(id: number): Promise<YourFordEntity> {
 		try {
 			const usuario = await this.findOne(id, {

@@ -44,7 +44,7 @@ const YourFordFinalizacao: React.FC = () => {
           usoCarro1: +(localStorage.getItem("uso1Id") as string),
           usoCarro2: +(localStorage.getItem("uso2Id") as string),
           modelo: +(localStorage.getItem("modeloId") as string),
-          usuario: 1,
+          usuario: +(localStorage.getItem("idUsuario") as string),
         })
         .then((response) => {
           console.log(response.data);
