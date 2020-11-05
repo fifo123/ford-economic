@@ -9,8 +9,6 @@ import {
   CompareTitle,
 } from "./styles";
 
-import Cold from "../../../assets/cold.svg";
-
 const DetalhesCompare: React.FC<{
   nomeSensor: string;
   economia: number;
@@ -18,14 +16,6 @@ const DetalhesCompare: React.FC<{
   carro: string;
   imagem: string;
 }> = (props) => {
-  function getEconomiaCombustivelEstado(economia: number) {
-    if (economia >= 0) {
-      return ["Economia de: ", economia + "L"];
-    } else {
-      return ["Gasto de: ", economia * -1 + "L"];
-    }
-  }
-
   function getUtilizacaoEstado(porcentagem: number) {
     if (porcentagem >= 0) {
       return [porcentagem, "% a mais", "red", "abaixo"];
@@ -39,7 +29,11 @@ const DetalhesCompare: React.FC<{
       <ContainerCompare>
         <GridCompareDetails>
           <GridCompareSymbols>
-            <CompareImage src={props.imagem} width="40px" height="40px" />
+            <CompareImage
+              src={`http://localhost:3000/get-image/?imagem=${props.imagem}`}
+              width="40px"
+              height="40px"
+            />
             <CompareTitle>{props.nomeSensor}</CompareTitle>
           </GridCompareSymbols>
           <GridCompareText>
@@ -50,9 +44,7 @@ const DetalhesCompare: React.FC<{
               usuários do {props.carro}
             </CompareText>
             <CompareText>
-              {getEconomiaCombustivelEstado(props.economia)[0]}
-              <b>{getEconomiaCombustivelEstado(props.economia)[1]}</b> de
-              combustível
+              Informação adicional: <b>ver em breve</b>
             </CompareText>
             <CompareText>
               Nesse quesito você está{" "}

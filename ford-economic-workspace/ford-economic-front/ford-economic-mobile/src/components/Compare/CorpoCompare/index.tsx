@@ -13,8 +13,6 @@ import Check from "../../../assets/check.svg";
 import LeftArrow from "../../../assets/left_arrow.svg";
 import RightArrow from "../../../assets/right_arrow.svg";
 import DetalhesCompare from "../DetalhesCompare";
-import Sensores from "../../../pages/Sensores";
-import teste from "../../../assets/arcondicionado.svg";
 
 const CorpoCompare: React.FC = () => {
   const sensorMock = [
@@ -23,21 +21,21 @@ const CorpoCompare: React.FC = () => {
       porcentagem: 25.4,
       economia: 0.7,
       carro: "FORD MUSTANG GT",
-      imagem: { teste },
+      imagem: "../assets/ar-condicionado.svg",
     },
     {
       nome: "Uso geral",
       porcentagem: 23.4,
       economia: -3,
       carro: "FORD TERRITORY",
-      imagem: "../../assets/car.svg",
+      imagem: "../assets/direcao.svg",
     },
     {
       nome: "Combustível",
       porcentagem: -23.4,
       economia: -2,
       carro: "FORD KA 2019",
-      imagem: "../../assets/combustivel.svg",
+      imagem: "../assets/combustivel.svg",
     },
   ];
 

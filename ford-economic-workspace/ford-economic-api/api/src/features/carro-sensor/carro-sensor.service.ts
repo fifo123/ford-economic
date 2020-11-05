@@ -69,6 +69,10 @@ export class CarroSensorService {
 		return featureEconomic;
 	}
 
+	async featureCompare(idCarro: number) {
+		return this.carroSensorRepository.featureCompare(idCarro);
+	}
+
 	trataFrenagem(sensor) {
 		return {
 			nomeSensor: sensor.nomeSensor,

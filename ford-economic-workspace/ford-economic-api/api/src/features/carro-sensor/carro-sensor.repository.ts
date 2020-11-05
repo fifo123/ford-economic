@@ -8,6 +8,8 @@ import { ListarCarroSensores } from './interface/listar-carro-sensores.interface
 import { FeatureSensores } from './interface/feature-sensores.interface';
 import { QueryFeatureSensores } from './interface/query-feature-sensores.interface';
 import { QueryFeatureEconomic } from './interface/query-feture-economic.interface';
+import { CarroService } from '../carro/carro.service';
+import { CarroEntity } from '../carro/carro.entity';
 
 @EntityRepository(CarroSensorEntity)
 export class CarroSensorRepository extends Repository<CarroSensorEntity> {
@@ -179,6 +181,62 @@ export class CarroSensorRepository extends Repository<CarroSensorEntity> {
 			);
 
 			return featureEconomic;
+		} catch (error) {}
+	}
+
+	async featureCompare(idCarro: number) {
+		try {
+			const queryCarro = this.createQueryBuilder('CarroSensor');
+			queryCarro.innerJoin('CarroSensor.carro', 'Carro');
+			queryCarro.select('DISTINCT Carro.modelo', 'modelo');
+
+			const carro = await queryCarro.getRawMany<{ modelo: string }>();
+			const modeloCarro = carro[0].modelo;
+
+			const query = this.createQueryBuilder('CarroSensor');
+			query.innerJoin('CarroSensor.sensor', 'Sensor');
+			query.innerJoin('CarroSensor.carro', 'Carro');
+			query.leftJoin('CarroSensor.ocorrenciaSensor', 'OcorrenciaSensor');
+			query.select('Sensor.nome', 'nomeSensor');
+			query.addSelect('Carro.id', 'idCarro');
+			query.addSelect('Carro.modelo', 'modelo');
+			query.addSelect('Sensor.icone', 'iconeSensor');
+			query.addSelect('OcorrenciaSensor.valor', 'valor');
+
+			query.where('Carro.modelo = :modeloCarro', {
+				modeloCarro: modeloCarro,
+			});
+			query.andWhere('Carro.id <> :idCarro', {
+				idCarro: idCarro,
+			});
+
+			const sensores = await query.getRawMany<{
+				iconeSensor: string;
+				nomeSensor: string;
+				idCarro: number;
+				valor: any;
+				motor: string;
+				potencia: string;
+				cargaBateria: string;
+			}>();
+
+			let sensorId = [sensores[0].idCarro];
+			console.log(sensorId);
+
+			const ids = sensores.map(sensor => {
+				if (sensorId.indexOf(sensor.idCarro) == -1) {
+					sensorId.push(sensor.idCarro);
+				}
+			});
+			console.log(sensorId);
+
+			// console.log(sensores);
+
+			const featureCompare = sensores.map(sensor => {
+				return sensor.valor[Object.keys(sensor.valor)[1]];
+			});
+
+			return featureCompare;
 		} catch (error) {}
 	}
 }
