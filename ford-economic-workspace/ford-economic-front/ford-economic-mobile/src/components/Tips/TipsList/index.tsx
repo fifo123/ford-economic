@@ -1,60 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import api from "../../../services";
 import SymbolTips from "../SymbolTips";
+import { FeatureTips } from "../tips.interface";
 
 import {
+  BackgroundTip,
   ContainerTipsList,
-  DarkBackgroundTip,
   GridInnerItem,
-  GridListTips,
-  LightBackgroundTip,
   TextContainer,
 } from "./styles";
 
 const TipsList: React.FC = () => {
+  const [tips, setTips] = useState<string[]>([]);
+
+  useEffect(() => {
+    api.get("/pages/tips/2").then((response) => {
+      setTips(response.data);
+    });
+  }, []);
+
   return (
     <ContainerTipsList>
-      <GridListTips>
-        <LightBackgroundTip>
+      {tips.map((tip, i) => (
+        <BackgroundTip
+          fundoCor={i % 2 == 0 ? "var(--white)" : "var(--darkblue)"}
+          fontCor={i % 2 != 0 ? "var(--white)" : "var(--darkblue)"}
+        >
           <GridInnerItem>
-            <SymbolTips />
-            <TextContainer>
-              Percebemos que você mantem o ar-condicionado ligado durante 93% do
-              uso do carro. Procure utilizar por mais tempo os vidros abertos!
-              Além de economizar, nada como um vento fresquinho!
-            </TextContainer>
+            <SymbolTips lampColor={i % 2 == 0} />
+            <TextContainer>{tip}</TextContainer>
           </GridInnerItem>
-        </LightBackgroundTip>
-        <DarkBackgroundTip>
-          <GridInnerItem>
-            <SymbolTips />
-            <TextContainer>
-              Altas rotações consomem maior quantidade de combustível! Vimos que
-              você poderia trocar as marchas ao alcançar menores rotações para
-              que tivesse uma boa economia de combustível!
-            </TextContainer>
-          </GridInnerItem>
-        </DarkBackgroundTip>
-        <LightBackgroundTip>
-          <GridInnerItem>
-            <SymbolTips />
-            <TextContainer>
-              Fazer revisões frequentes pode te ajudar a manter todas as peças
-              do seu carro em ordem! As vezes é melhor trocar uma peça ao invés
-              de uma danificar outras, e o custo de manuntenção ser maior!
-            </TextContainer>
-          </GridInnerItem>
-        </LightBackgroundTip>
-        <DarkBackgroundTip>
-          <GridInnerItem>
-            <SymbolTips />
-            <TextContainer>
-              A sua velocidade média durante a passagem de lombadas está alta
-              demais! Isso pode causar precocemente o desgaste em alguns
-              componentes do seu Ford! Fique atento!
-            </TextContainer>
-          </GridInnerItem>
-        </DarkBackgroundTip>
-      </GridListTips>
+        </BackgroundTip>
+      ))}
     </ContainerTipsList>
   );
 };
